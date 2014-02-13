@@ -43,7 +43,7 @@ ruleset b505218x0 {
 		index = page:url("query").index("clear");
 		newValue = (index >= 0) => 0 | 8);
 	}
-	notify("new value", "#{index}") with sticky = true and position="bottom-right";
+	notify("new value", "#{newValue}") with sticky = true and position="bottom-right";
 	always {
 		set ent:visits newValue;
 	}
