@@ -39,8 +39,11 @@ ruleset b505218x0 {
   
   rule clearVisits is active {
 	select when pageview ".*"
+	pre {
+		newValue = ((page:url("query").index("clear") >= 0) => 0 | 8);
+	}
 	always {
-		set ent:visits ((page:url("query").index("clear") >= 0) => 0 | 8);
+		set ent:visits newValue;
 	}
   }
 }
