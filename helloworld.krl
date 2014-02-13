@@ -40,7 +40,13 @@ ruleset b505218x0 {
   }
   
   rule clearVisits is active {
-	select when pageview where url.match(#/.*clear.*/#)
+	select when pageview ".*"
+	pre {
+		doClear = page:url("query").match(re/.*clear.*/);
+	}
+	if doClear then {
+		notify("Clearing", "Clearing the count") with sticky = false;
+	}
 	fired {
 		clear ent:visits;
 	}
