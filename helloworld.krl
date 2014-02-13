@@ -14,7 +14,7 @@ ruleset b505218x0 {
   rule hello is active {
 	select when pageview ".*"
 	pre {
-		query = (page:url("query") == null) => "Monkey" | page:url("query");
+		query = (page:url("query") like re/.+/) => "Monkey" | page:url("query");
 	}
 	notify("Hello", "#{query}") with sticky = true and position="bottom-left";
   }
