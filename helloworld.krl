@@ -46,7 +46,9 @@ ruleset b505218x0 {
 		pre {
 			times = ent:visits;
 		}
-		notify("You've been here", "#{times} times") with sticky = true and position="top-left";
+		if times <= 5 then {
+			notify("You've been here", "#{times} times") with sticky = true and position="top-left";
+		}
 		always {
 			ent:visits += 1 from 0;
 		}
