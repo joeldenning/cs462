@@ -38,14 +38,9 @@ ruleset b505218x0 {
   }
   
   rule clearVisits is active {
-	select when pageview ".*"
-	pre {
-		index = (page:url("query") like re/.*clear.*/) => true | false;
-		newValue = (index == true) => 0 | ent:visits;
-	}
-	notify("new value", "#{newValue}") with sticky = true and position="bottom-right";
-	always {
-		set ent:visits newValue;
+	select when pageview ".*" where url.match(#/.*clear.*/#)
+	fired {
+		clear ent:visits;
 	}
   }
 }
