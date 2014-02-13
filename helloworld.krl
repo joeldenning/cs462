@@ -12,10 +12,11 @@ ruleset b505218x0 {
     //notify("Notification 2", "This is also notification") with sticky = true and position="bottom-right";
   }
   rule hello is active {
+	select when pageview ".*"
 	pre {
 		query = page:url("query");
+		name = "Monkey";
 	}
-	select when pageview ".*"
-	notify("Hello", <<Hello #{query == null ? "Monkey" : query}>>) with sticky = true and position="bottom-left";
+	notify("Hello", "#{name}") with sticky = true and position="bottom-left";
   }
 }
