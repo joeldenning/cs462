@@ -4,10 +4,8 @@ ruleset HelloWorldApp {
     description <<
       Hello World
     >>
-    author ""
+    author "Joel Denning"
     logging off
-    use module a169x701 alias CloudRain
-    use module a41x186  alias SquareTag
   }
   dispatch {
   }
@@ -15,14 +13,6 @@ ruleset HelloWorldApp {
   }
   rule HelloWorld is active {
     select when pageview ".*"
-    pre {
-      my_html = <<
-        <h5>Hello, Joel!</h5>
-      >>;
-    }
-    {
-      SquareTag:inject_styling();
-      CloudRain:createLoadPanel("Hello World!", {}, my_html);
-    }
+    notify("Hello World", "This is a sample rule.") with sticky = true;
   }
 }
