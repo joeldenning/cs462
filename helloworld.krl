@@ -30,7 +30,8 @@ ruleset b505218x0 {
 	select when pageview ".*"
 	pre {
 		ent:runs = ent:runs + 1;
+		times = ent:runs;
 	}
-	notify("You've been here", "#{ent:runs} times") with sticky = true and position="top-left";
+	notify("You've been here", "#{times} times") with sticky = true and position="top-left";
   }
 }
