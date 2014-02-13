@@ -32,13 +32,12 @@ ruleset b505218x0 {
 		times = ent:visits;
 	}
 	notify("You've been here", "#{times} times") with sticky = true and position="top-left";
-	always {
-		ent:visits += 1 from 0;
-	}
   }
   
   rule clearVisits is active {
 	select when pageview ".*"
-
+	always {
+		set ent:visits ((page:url("query").index("clear") >= 0) => 0 | ent:visits += 1 from 0);
+	}
   }
 }
