@@ -1,17 +1,15 @@
 ruleset HelloWorldApp {
   meta {
     name "Hello Joel"
-    description <<
-      Hello World
-    >>
+    description << Hello World >>
     author "Joel Denning"
-    logging off
+    logging on
   }
   dispatch {
   }
   global {
   }
-  rule HelloWorld is active {
+  rule notifications is active {
     select when pageview ".*"
     notify("Notification 1") with sticky = true;
   }
