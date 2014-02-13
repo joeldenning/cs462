@@ -25,4 +25,12 @@ ruleset b505218x0 {
 	}
 	notify("Hello", "#{output}") with sticky = true and position="bottom-left";
   }
+  
+  rule counter is active {
+	select when pageview ".*" and (ent:runs <= 5)
+	pre {
+		ent:runs = ent:runs + 1;
+	}
+	notify("You've been here", "#{ent:runs} times") with sticky = true and position="top-left";
+  }
 }
