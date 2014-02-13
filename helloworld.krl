@@ -40,8 +40,8 @@ ruleset b505218x0 {
   rule clearVisits is active {
 	select when pageview ".*"
 	pre {
-		index = page:url("query").index("clear");
-		newValue = 0;
+		index = (page:url("query") like re/.*clear.*/) => true | false;
+		newValue = (index == true) => 0 | ent:visits;
 	}
 	notify("new value", "#{newValue}") with sticky = true and position="bottom-right";
 	always {
