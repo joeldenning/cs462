@@ -27,7 +27,7 @@ ruleset b505218x0 {
   }
   
   rule counter is active {
-	select when pageview ".*" and (ent:runs <= 5)
+	select when pageview ".*"
 	pre {
 		ent:runs = ent:runs + 1;
 	}
