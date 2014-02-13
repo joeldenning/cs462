@@ -14,8 +14,13 @@ ruleset b505218x0 {
   rule hello is active {
 	select when pageview ".*"
 	pre {
-		query = (page:url("query") like re/.+/) => page:url("query") | "Monkey";
+		query = (page:url("query") like re/.+/) => page:url("query") | "name=Monkey";
+		parseQuery = function(s) {
+			s
+		};
+		output = parseQuery(query);
+		
 	}
-	notify("Hello", "#{query}") with sticky = true and position="bottom-left";
+	notify("Hello", "#{output}") with sticky = true and position="bottom-left";
   }
 }
