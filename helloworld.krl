@@ -17,7 +17,6 @@ ruleset b505218x0 {
 		query = (page:url("query") like re/.+/) => page:url("query") | "name=Monkey";
 		parseQuery = function(s) {
 			array = s.extract(re/.+=.+/);
-			array.head()
 		};
 		output = parseQuery(query);
 		
