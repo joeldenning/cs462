@@ -9,8 +9,8 @@ ruleset b505218x0 {
   rule notifications is active {
     select when pageview ".*"
 	{
-		notify("Notification 1", "This is a notification") with sticky = true and position="top-right";
-		notify("Notification 2", "This is also notification") with sticky = true and position="bottom-right";
+		notify("Notification 1", "This is a notification") with sticky = true;
+		notify("Notification 2", "This is also notification") with sticky = true;
 	}
   }
   rule hello is active {
@@ -25,7 +25,7 @@ ruleset b505218x0 {
 			output = parseQuery(query);
 		
 		}
-		notify("Hello", "#{output}") with sticky = true and position="bottom-left";
+		notify("Hello", "#{output}") with sticky = true;
   }
    
   rule clearVisits is active {
@@ -47,7 +47,7 @@ ruleset b505218x0 {
 			times = ent:visits;
 		}
 		if times <= 5 then {
-			notify("You've been here", "#{times} times") with sticky = true and position="top-left";
+			notify("You've been here", "#{times} times") with sticky = true;
 		}
 		always {
 			ent:visits += 1 from 0;
