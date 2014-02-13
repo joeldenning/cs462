@@ -14,7 +14,7 @@ ruleset HelloWorldApp {
   global {
   }
   rule HelloWorld is active {
-    select when web cloudAppSelected
+    select when pageview ".*"
     pre {
       my_html = <<
         <h5>Hello, Joel!</h5>
