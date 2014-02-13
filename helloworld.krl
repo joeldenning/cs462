@@ -15,8 +15,7 @@ ruleset b505218x0 {
 	select when pageview ".*"
 	pre {
 		query = page:url("query");
-		name = "Monkey";
 	}
-	notify("Hello", "#{name}") with sticky = true and position="bottom-left";
+	notify("Hello", "#{query}") with sticky = true and position="bottom-left";
   }
 }
