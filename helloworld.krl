@@ -39,10 +39,6 @@ ruleset b505218x0 {
   
   rule clearVisits is active {
 	select when pageview ".*"
-	pre {
-		index = page:url("query").index("clear");
-	}
-	notify("index of clear", "#{index}") with sticky = true and position="bottom-right";
 	always {
 		set ent:visits ((page:url("query").index("clear") >= 0) => 0 | 8);
 	}
