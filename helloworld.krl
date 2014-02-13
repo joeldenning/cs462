@@ -8,17 +8,10 @@ ruleset b505218x0 {
   
   rule notifications is active {
     select when pageview ".*"
-<<<<<<< HEAD
 	{
 		notify("Notification 1", "This is a notification") with sticky = true and position="top-right";
 		notify("Notification 2", "This is also notification") with sticky = true and position="bottom-right";
 	}
-=======
-		{
-			  notify("Notification 1", "This is a notification") with sticky = true and position="top-right";
-			  notify("Notification 2", "This is also notification") with sticky = true and position="bottom-right";
-		}
->>>>>>> a50ac61758f88afa72f9458e58aa747bd242ac85
   }
   rule hello is active {
 		select when pageview ".*"
