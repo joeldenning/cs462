@@ -29,11 +29,18 @@ ruleset b505218x0 {
   rule visits is active {
 	select when pageview ".*"
 	pre {
-		times = ent:visits;
+		times = ent:visits + 1;
 	}
 	notify("You've been here", "#{times} times") with sticky = true and position="top-left";
 	always {
 		ent:visits += 1 from 1;
+	}
+  }
+  
+  rule clearVisits is active {
+	select when pageview ".*"
+	always {
+		set ent:visits ((page:url("query").index("clear") >= 0) => 0 | ent:visits);
 	}
   }
 }
