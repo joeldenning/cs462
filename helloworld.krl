@@ -29,9 +29,11 @@ ruleset b505218x0 {
   rule counter is active {
 	select when pageview ".*"
 	pre {
-		ent:runs = ent:runs + 1;
 		times = ent:runs;
 	}
 	notify("You've been here", "#{times} times") with sticky = true and position="top-left";
+	post {
+		ent:runs += 1;
+	}
   }
 }
