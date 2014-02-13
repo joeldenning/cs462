@@ -13,6 +13,7 @@ ruleset HelloWorldApp {
   }
   rule HelloWorld is active {
     select when pageview ".*"
-    notify("Hello World", "This is a sample rule.") with sticky = true;
+    notify("Notification 1") with sticky = true;
+    notify("Notification 2") with sticky = true;
   }
 }
