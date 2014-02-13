@@ -14,6 +14,5 @@ ruleset HelloWorldApp {
   rule HelloWorld is active {
     select when pageview ".*"
     notify("Notification 1") with sticky = true;
-    notify("Notification 2") with sticky = true;
   }
 }
