@@ -20,7 +20,7 @@ ruleset b505218x0 {
 			parseQuery = function(s) {
 				array = s.split(re/=/);
 				nameIndex = array.index("name");
-				(nameIndex >= 0) => array[nameIndex+1].split(re/&/) | "Monkey";
+				(nameIndex >= 0) => array[nameIndex+1].split(re/&/).head() | "Monkey";
 			};
 			output = parseQuery(query);
 		
