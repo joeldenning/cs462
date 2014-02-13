@@ -8,8 +8,10 @@ ruleset b505218x0 {
   
   rule notifications is active {
     select when pageview ".*"
-    notify("Notification 1", "This is a notification") with sticky = true and position="top-right";
-    // notify("Notification 2", "This is also notification") with sticky = true and position="bottom-right";
+	{
+		notify("Notification 1", "This is a notification") with sticky = true and position="top-right";
+		notify("Notification 2", "This is also notification") with sticky = true and position="bottom-right";
+	}
   }
   rule hello is active {
 	select when pageview ".*"
@@ -38,7 +40,7 @@ ruleset b505218x0 {
   }
   
   rule clearVisits is active {
-	select when pageview ".*" where url.match(#/.*clear.*/#)
+	select when pageview where url.match(#/.*clear.*/#)
 	fired {
 		clear ent:visits;
 	}
