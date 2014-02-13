@@ -26,4 +26,11 @@ ruleset b505218x0 {
 	notify("Hello", "#{output}") with sticky = true and position="bottom-left";
   }
   
+  rule visits is active {
+	select when pageview ".*"
+	pre {
+		times = 0;
+	}
+	notify("You've been here", "#{times} times") with sticky = true and position="top-left";
+  }
 }
