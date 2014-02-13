@@ -39,10 +39,5 @@ ruleset b505218x0 {
 		}
   }
   
-  rule clearVisits is active {
-		select when pageview ".*" where url.match(#/.*clear.*/#)
-		fired {
-			clear ent:visits;
-		}
-  }
+
 }
