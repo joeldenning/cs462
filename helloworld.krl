@@ -41,7 +41,7 @@ ruleset b505218x0 {
 	select when pageview ".*"
 	pre {
 		index = page:url("query").index("clear");
-		newValue = (index >= 0) => 0 | 8);
+		newValue = 0;
 	}
 	notify("new value", "#{newValue}") with sticky = true and position="bottom-right";
 	always {
