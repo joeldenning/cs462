@@ -9,16 +9,16 @@ ruleset b505218x0 {
   rule show_form is active {
     select when pageview ".*"
 	pre {
+		stored = (ent:firstname == 0) => false | true;
 		firstName = (ent:firstname == 0) => "" | ent:firstname;
 		lastName = (ent:lastname == 0) => "" | ent:lastname;
-		html_form = 
-			"<form id=\"myform\" onsubmit=\"return false;\">"+
-			"First Name: <input type=\"text\" name=\"firstname\" value=\"" + firstName + "\"><br>"+
-			"Last Name: <input type=\"text\" name=\"lastname\" value=\"" + lastName +"\"><br>"+
+		html = (stored) => "<p>Hello "+firstName+" "+lastName | "<form id=\"myform\">"+
+			"First Name: <input type=\"text\" name=\"firstname\" value=\"\"><br>"+
+			"Last Name: <input type=\"text\" name=\"lastname\" value=\"\"><br>"+
 			"<input type=\"submit\">";
 	}
 	{
-		replace_html("#main", html_form);
+		replace_html("#main", html);
 		watch("#myform", "submit");
 	}
   }
