@@ -16,9 +16,7 @@ ruleset b505218x0 {
   
   rule form_submitted is active {
 	select when web submit "#myform"
-	always {
-		ent:firstname = q_html("#firstname")[0].value
-	}
+	notify("Submitted", "Submitted") with sticky = false;
   }
   
   rule clearVisits is active {
