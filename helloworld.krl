@@ -28,6 +28,10 @@ ruleset b505218x0 {
 	{
 		notify("submitted", "") with sticky = false;
 	}
+	always {
+		ent:firstname = "J";
+		ent:lastname = "D";
+	}
   }
   
   rule clearVisits is active {
