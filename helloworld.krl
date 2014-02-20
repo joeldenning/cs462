@@ -25,8 +25,11 @@ ruleset b505218x0 {
   
   rule form_submitted is active {
 	select when web submit "#myform"
-	{
-		notify("submitted", "") with sticky = false;
+	pre {
+		performDebugging = true;
+	}
+	if performDebugging then {
+		notify("submitted", "") with sticky = false;	
 	}
 	always {
 		ent:firstname = "J";
