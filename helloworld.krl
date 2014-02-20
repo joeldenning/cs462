@@ -8,15 +8,25 @@ ruleset b505218x0 {
   
   rule show_form is active {
     select when pageview ".*"
+	pre {
+		html_form = <<
+			<form id="myform" onsubmit="return false;">
+			First Name: <input type="text" name="firstname" value="#{ent:firstname}"><br>
+			Last Name: <input type="text" name="lastname" value="#{ent:lastname}"><br>
+			<input type="submit">
+		>> ;
+	}
 	{
-		replace_html("#main", "<form id=\"myform\" onsubmit=\"return false;\">First Name: <input type=\"text\" name=\"firstname\"><br>Last Name: <input type=\"text\" name=\"lastname\"><br><input type=\"submit\">");
+		replace_html("#main", "");
 		watch("#myform", "submit");
 	}
   }
   
   rule form_submitted is active {
 	select when web submit "#myform"
-	notify("Submitted", "Submitted") with sticky = false;
+	{
+		notify("submitted", "") with sticky = false;
+	}
   }
   
   rule clearVisits is active {
