@@ -9,14 +9,14 @@ ruleset b505218x0 {
   rule show_form is active {
     select when pageview ".*"
 	{
-		replace_html("#main", "<form id=\"myform\" onsubmit="return false;">First Name: <input type=\"text\" name=\"firstname\"><br>Last Name: <input type=\"text\" name=\"lastname\"><br><input type=\"submit\">");
-		watch('#myform', 'submit');
+		replace_html("#main", "<form id=\"myform\" onsubmit=\"return false;\">First Name: <input type=\"text\" name=\"firstname\"><br>Last Name: <input type=\"text\" name=\"lastname\"><br><input type=\"submit\">");
+		watch("#myform", "submit");
 	}
   }
   
   rule form_submitted is active {
 	select when web submit "#myform"
-	{
+	always {
 		ent:firstname = q_html("#firstname")[0].value
 	}
   }
