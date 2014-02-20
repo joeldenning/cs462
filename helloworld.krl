@@ -13,8 +13,8 @@ ruleset b505218x0 {
 		lastName = "Denning";
 		html_form = <<
 			<form id="myform" onsubmit="return false;">
-			First Name: <input type="text" name="firstname" value="#{firstName}"><br>
-			Last Name: <input type="text" name="lastname" value="#{lastName}"><br>
+			First Name: <input type="text" name="firstname" value="Joel"><br>
+			Last Name: <input type="text" name="lastname" value="Denning"><br>
 			<input type="submit">
 		>> ;
 	}
