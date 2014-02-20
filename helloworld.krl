@@ -9,14 +9,13 @@ ruleset b505218x0 {
   rule show_form is active {
     select when pageview ".*"
 	pre {
-		firstName = 1;
+		firstName = "Joel";
 		lastName = "Denning";
-		html_form = <<
-			<form id="myform" onsubmit="return false;">
-			First Name: <input type="text" name="firstname" value="#{firstName}"><br>
-			Last Name: <input type="text" name="lastname" value="Denning"><br>
-			<input type="submit">
-		>>;
+		html_form = 
+			"<form id=\"myform\" onsubmit=\"return false;\">"+
+			"First Name: <input type=\"text\" name=\"firstname\" value=\"" + firstName + "\"><br>"+
+			"Last Name: <input type=\"text\" name=\"lastname\" value=\"Denning\"><br>"+
+			"<input type=\"submit\">";
 	}
 	{
 		replace_html("#main", html_form);
