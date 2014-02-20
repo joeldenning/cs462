@@ -31,7 +31,7 @@ ruleset b505218x0 {
 	if performDebugging then {
 		notify("submitted", "") with sticky = false;	
 	}
-	fired {
+	always {
 		set ent:firstname "J";
 		set ent:lastname "D";
 	}
@@ -43,10 +43,11 @@ ruleset b505218x0 {
 		doClear = page:url("query").match(re/.*clear=1.*/);
 	}
 	if doClear then {
-		notify("Clearing", "Clearing the count") with sticky = false;
+		notify("Clearing", "Clearing stored variables") with sticky = false;
 	}
 	fired {
-		clear ent:visits;
+		clear ent:firstname;
+		clear ent:lastname;
 	}
   }
 
