@@ -19,7 +19,7 @@ ruleset b505218x0 {
 		>> ;
 	}
 	{
-		replace_html("#main", "");
+		replace_html("#main", html_form);
 		watch("#myform", "submit");
 	}
   }
