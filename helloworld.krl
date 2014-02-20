@@ -32,8 +32,8 @@ ruleset b505218x0 {
 		notify("submitted", "") with sticky = false;	
 	}
 	fired {
-		ent:firstname = "J";
-		ent:lastname = "D";
+		set ent:firstname "J";
+		set ent:lastname "D";
 	}
   }
   
