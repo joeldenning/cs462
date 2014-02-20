@@ -10,11 +10,11 @@ ruleset b505218x0 {
     select when pageview ".*"
 	pre {
 		firstName = (ent:firstname == 0) => "" | ent:firstname;
-		lastName = "Denning";
+		lastName = (ent:lastname == 0) => "" | ent:lastname;
 		html_form = 
 			"<form id=\"myform\" onsubmit=\"return false;\">"+
 			"First Name: <input type=\"text\" name=\"firstname\" value=\"" + firstName + "\"><br>"+
-			"Last Name: <input type=\"text\" name=\"lastname\" value=\"Denning\"><br>"+
+			"Last Name: <input type=\"text\" name=\"lastname\" value=\"" + lastName +"\"><br>"+
 			"<input type=\"submit\">";
 	}
 	{
