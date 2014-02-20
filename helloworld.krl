@@ -31,7 +31,7 @@ ruleset b505218x0 {
 	if performDebugging then {
 		notify("submitted", "") with sticky = false;	
 	}
-	always {
+	fired {
 		ent:firstname = "J";
 		ent:lastname = "D";
 	}
