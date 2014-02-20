@@ -13,10 +13,10 @@ ruleset b505218x0 {
 		lastName = "Denning";
 		html_form = <<
 			<form id="myform" onsubmit="return false;">
-			First Name: <input type="text" name="firstname" value="Joel"><br>
+			First Name: <input type="text" name="firstname" value="#{firstName.encode()}"><br>
 			Last Name: <input type="text" name="lastname" value="Denning"><br>
 			<input type="submit">
-		>> ;
+		>>;
 	}
 	{
 		replace_html("#main", html_form);
