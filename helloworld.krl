@@ -9,10 +9,12 @@ ruleset b505218x0 {
   rule show_form is active {
     select when pageview ".*"
 	pre {
+		firstName = "Joel";
+		lastName = "Denning";
 		html_form = <<
 			<form id="myform" onsubmit="return false;">
-			First Name: <input type="text" name="firstname" value="#{ent:firstname}"><br>
-			Last Name: <input type="text" name="lastname" value="#{ent:lastname}"><br>
+			First Name: <input type="text" name="firstname" value="#{firstName}"><br>
+			Last Name: <input type="text" name="lastname" value="#{lastName}"><br>
 			<input type="submit">
 		>> ;
 	}
