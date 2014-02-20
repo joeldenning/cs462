@@ -9,7 +9,7 @@ ruleset b505218x0 {
   rule show_form is active {
     select when pageview ".*"
 	pre {
-		firstName = "Joel";
+		firstName = ent:firstname;
 		lastName = "Denning";
 		html_form = 
 			"<form id=\"myform\" onsubmit=\"return false;\">"+
