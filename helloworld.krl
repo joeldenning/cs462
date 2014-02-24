@@ -37,12 +37,16 @@ ruleset b505218x0 {
   
   rule form_submitted is active {
 	select when web submit "#myform"
+	pre {
+		first = "J";
+		last = "D";
+	}
 	{
 		notify("Submitted", "");
 	}
 	always {
-		set ent:firstname "J";
-		set ent:lastname "D";
+		set ent:firstname first;
+		set ent:lastname last;
 	}
   }
 
