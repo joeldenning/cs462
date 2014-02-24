@@ -15,8 +15,8 @@ ruleset b505218x0 {
 		notify("Clearing", "Clearing stored variables") with sticky = false;
 	}
 	fired {
-		clear ent:firstname;
-		clear ent:lastname;
+		set ent:firstname null;
+		set ent:lastname null;
 	}
   }
   
@@ -24,7 +24,8 @@ ruleset b505218x0 {
     select when pageview ".*"
 	pre 
 	{
-		html = (ent:firstname != 0) => "<p>Hello "+ent:firstname+" "+ent:lastname+"</p>" | "<form id=\"myform\">"+
+		stored = ent:firstname.isnull();
+		html = (stored) => "<p>Hello "+ent:firstname+" "+ent:lastname+"</p>" | "<form id=\"myform\">"+
 			"First Name: <input type=\"text\" name=\"firstname\"><br>"+
 			"Last Name: <input type=\"text\" name=\"lastname\"><br>"+
 			"<input type=\"submit\">";
