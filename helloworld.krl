@@ -17,6 +17,7 @@ ruleset b505218x0 {
 	fired {
 		set ent:firstname null;
 		set ent:lastname null;
+		set ent:stored null;
 	}
   }
   
@@ -24,8 +25,7 @@ ruleset b505218x0 {
     select when pageview ".*"
 	pre 
 	{
-		stored = ent:firstname.isnull();
-		html = (stored) => "<p>Hello "+ent:firstname+" "+ent:lastname+"</p>" | "<form id=\"myform\">"+
+		html = (ent:stored == 1) => "<p>Hello "+ent:firstname+" "+ent:lastname+"</p>" | "<form id=\"myform\">"+
 			"First Name: <input type=\"text\" name=\"firstname\"><br>"+
 			"Last Name: <input type=\"text\" name=\"lastname\"><br>"+
 			"<input type=\"submit\">";
@@ -46,6 +46,7 @@ ruleset b505218x0 {
 		notify("Submitted", "");
 	}
 	always {
+		set ent:stored 1;
 		set ent:firstname first;
 		set ent:lastname last;
 	}
