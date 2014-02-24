@@ -30,8 +30,8 @@ ruleset b505218x0 {
 		notify("submitted", "1") with sticky = false;	
 	}
 	fired {
-		set ent:firstname "J";
-		set ent:lastname "D";
+		ent:firstname += 1 from 1;
+		ent:lastname +=1 from 1;
 	}
   }
   
