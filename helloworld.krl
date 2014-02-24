@@ -24,11 +24,14 @@ ruleset b505218x0 {
   rule form_submitted is active {
 	select when web submit "#myform"
 	pre {
-		name = "J";
+		performDebugging = true;
 	}
-	always {
-		set ent:firstname name;
-		set ent:lastname name;
+	if performDebugging then {
+		notify("submitted", "1") with sticky = false;	
+	}
+	fired {
+		set ent:firstname "J";
+		set ent:lastname "D";
 	}
   }
   
