@@ -43,8 +43,8 @@ ruleset b505218x0 {
 	}
 	always {
 		set ent:stored 1;
-		set ent:firstname "Test First Name";
-		set ent:lastname "Test Last Name";
+		set ent:firstname 2;
+		set ent:lastname 3;
 	}
   }
 
