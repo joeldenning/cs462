@@ -36,16 +36,12 @@ ruleset b505218x0 {
   
   rule form_submitted is active {
 	select when web submit "#myform"
-	pre {
-		performDebugging = true;
+	{
+		noop();
 	}
-	if performDebugging then {
-		notify("submitted", "1") with sticky = false;	
-	}
-	fired {
+	always {
 		ent:firstname += 1 from 1;
 		ent:lastname +=1 from 1;
-		replace_html("#main", "<p>Hello "+ent:firstname+" "+ent:lastname+"</p>");
 	}
   }
 
