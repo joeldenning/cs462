@@ -6,11 +6,24 @@ ruleset b505218x0 {
     logging on
   }
   
+  rule clearVisits is active {
+	select when pageview ".*"
+	pre {
+		doClear = page:url("query").match(re/.*clear=1.*/);
+	}
+	if doClear then {
+		notify("Clearing", "Clearing stored variables") with sticky = false;
+	}
+	fired {
+		clear ent:firstname;
+		clear ent:lastname;
+	}
+  }
+  
   rule show_form is active {
     select when pageview ".*"
 	pre {
-		stored = (ent:firstname == 0) => false | true;
-		html = (stored) => "<p>Hello "+ent:firstname+" "+ent:lastname+"</p>" | "<form id=\"myform\">"+
+		html = (ent:firstname != 0) => "<p>Hello "+ent:firstname+" "+ent:lastname+"</p>" | "<form id=\"myform\">"+
 			"First Name: <input type=\"text\" name=\"firstname\"><br>"+
 			"Last Name: <input type=\"text\" name=\"lastname\"><br>"+
 			"<input type=\"submit\">";
@@ -32,20 +45,6 @@ ruleset b505218x0 {
 	fired {
 		ent:firstname += 1 from 1;
 		ent:lastname +=1 from 1;
-	}
-  }
-  
-  rule clearVisits is active {
-	select when pageview ".*"
-	pre {
-		doClear = page:url("query").match(re/.*clear=1.*/);
-	}
-	if doClear then {
-		notify("Clearing", "Clearing stored variables") with sticky = false;
-	}
-	fired {
-		clear ent:firstname;
-		clear ent:lastname;
 	}
   }
 
