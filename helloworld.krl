@@ -39,8 +39,8 @@ ruleset b505218x0 {
   rule form_submitted is active {
 	select when web submit "#myform"
 	pre {
-		first = "J";
-		last = "D";
+		first = event:attr("firstname");
+		last = event:attr("lastname");
 	}
 	{
 		notify("Submitted", "");
