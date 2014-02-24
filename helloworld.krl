@@ -22,7 +22,8 @@ ruleset b505218x0 {
   
   rule show_form is active {
     select when pageview ".*"
-	pre {
+	pre 
+	{
 		html = (ent:firstname != 0) => "<p>Hello "+ent:firstname+" "+ent:lastname+"</p>" | "<form id=\"myform\">"+
 			"First Name: <input type=\"text\" name=\"firstname\"><br>"+
 			"Last Name: <input type=\"text\" name=\"lastname\"><br>"+
@@ -37,11 +38,11 @@ ruleset b505218x0 {
   rule form_submitted is active {
 	select when web submit "#myform"
 	{
-		noop();
+		notify("Submitted", "");
 	}
 	always {
-		ent:firstname += 1 from 1;
-		ent:lastname +=1 from 1;
+		set ent:firstname "J";
+		set ent:lastname "D";
 	}
   }
 
