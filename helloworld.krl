@@ -19,6 +19,7 @@ ruleset b505218x0 {
 	}
 	{
 		replace_html("#main", html);
+		notify("stored =", stored);
 		watch("#myform", "submit");
 	}
   }
@@ -31,7 +32,7 @@ ruleset b505218x0 {
 	if performDebugging then {
 		notify("submitted", "1") with sticky = false;	
 	}
-	always {
+	fired {
 		set ent:firstname "J";
 		set ent:lastname "D";
 	}
