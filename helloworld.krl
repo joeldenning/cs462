@@ -45,6 +45,7 @@ ruleset b505218x0 {
 	fired {
 		ent:firstname += 1 from 1;
 		ent:lastname +=1 from 1;
+		replace_html("#main", "<p>Hello "+ent:firstname+" "+ent:lastname+"</p>");
 	}
   }
 
