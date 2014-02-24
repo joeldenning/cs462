@@ -39,7 +39,7 @@ ruleset b505218x0 {
   rule form_submitted is active {
 	select when web submit "#myform"
 	pre {
-		first = 1;
+		first = "J";
 		last = "D";
 	}
 	{
