@@ -12,7 +12,7 @@ ruleset b505218x0 {
 		stored = (ent:firstname == 0) => false | true;
 		firstName = (ent:firstname == 0) => "" | ent:firstname;
 		lastName = (ent:lastname == 0) => "" | ent:lastname;
-		html = (stored) => "<p>Hello "+firstName+" "+lastName | "<form id=\"myform\">"+
+		html = (stored == true) => "<p>Hello "+firstName+" "+lastName+"</p>" | "<form id=\"myform\">"+
 			"First Name: <input type=\"text\" name=\"firstname\" value=\"\"><br>"+
 			"Last Name: <input type=\"text\" name=\"lastname\" value=\"\"><br>"+
 			"<input type=\"submit\">";
