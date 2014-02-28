@@ -9,23 +9,13 @@ ruleset b505218x0 {
   
 	global {
 	  searchRT = function(title) {
-//			json = http:get("api.rottentomatoes.com/api/public/v1.0/movies.json", {"apikey": "e5nggrvdn9j839b98mjrex3k", "q": title} ).pick("$.content").decode();
-			"didn't die";
+			result = http:get("api.rottentomatoes.com/api/public/v1.0/movies.json", {"apikey": "e5nggrvdn9j839b98mjrex3k", "q": title} );
+			json result.pick("$.content").decode();
+			movieArray = body.pick("$.movies");
+			movie = movieArray[0];
+			movie;
 		};
 	}
-  
-  rule clearVisits is active {
-	select when pageview ".*"
-	pre {
-		doClear = page:url("query").match(re/.*clear=1.*/);
-	}
-	if doClear then {
-		notify("Clearing", "Clearing stored variables") with sticky = false;
-	}
-	fired {
-		set ent:stored null;
-	}
-  }
   
   rule show_form is active {
     select when pageview ".*"
@@ -44,15 +34,11 @@ ruleset b505218x0 {
   rule form_submitted is active {
 	select when web submit "#myform"
 	pre {
-		title = event:attr("title");
-		//returnedJSON = searchRT(title);
+		returnedJSON = searchRT(event:attr("title"));
 	}
 	{
 		notify("Submitted", "hello");
-		replace_html("#main", "hello");
-	}
-	always {
-		set ent:stored 1;
+		replace_inner("#main", returnedJSON.as("str"));
 	}
   }
 
