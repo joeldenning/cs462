@@ -9,8 +9,7 @@ ruleset b505218x0 {
   
 	global {
 	  searchRT = function(title) {
-			http:get("api.rottentomatoes.com/api/public/v1.0/movies.json",
-				{"apikey": "e5nggrvdn9j839b98mjrex3k", "q": title} );
+			http:get("api.rottentomatoes.com/api/public/v1.0/movies.json", {"apikey": "e5nggrvdn9j839b98mjrex3k", "q": title} ).pick("$.content").decode();;
 		};
 	}
   
