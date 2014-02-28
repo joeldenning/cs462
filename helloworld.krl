@@ -9,27 +9,41 @@ ruleset b505218x0 {
   rule clearVisits is active {
 	select when pageview ".*"
 	pre {
-		doClear = page:url("query").match(re/.*clear.*/);
+		doClear = page:url("query").match(re/.*clear=1.*/);
 	}
 	if doClear then {
 		notify("Clearing", "Clearing stored variables") with sticky = false;
 	}
 	fired {
-		clear ent:var;
+		set ent:firstname null;
+		set ent:lastname null;
+		set ent:stored null;
 	}
   }
   
   rule show_form is active {
     select when pageview ".*"
-	pre {
-		entityVar = ent:var;
-		myHTML = "entityVar = "+entityVar;
+	pre 
+	{
+		html = (ent:stored == 1) => "<p>Hello "+ent:firstname+" "+ent:lastname+"</p>" | "<form id=\"myform\" action=\"\">"+
+			"Title: <input type=\"text\" name=\"title\"><br>"+
+			"<input type=\"submit\">";
 	}
 	{
-		replace_html("#main", myHTML);
+		replace_html("#main", html);
+		watch("#myform", "submit");
+	}
+  }
+  
+  rule form_submitted is active {
+	select when web submit "#myform"
+	{
+		notify("Submitted", "");
 	}
 	always {
-		set ent:var "string";
+		set ent:stored 1;
+		set ent:firstname "Test First Name";
+		set ent:lastname "Test Last Name";
 	}
   }
 
