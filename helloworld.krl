@@ -39,8 +39,10 @@ ruleset b505218x0 {
 		thumbnail = movie.pick("$.posters").pick("$.thumbnail");
 		title = movie.pick("$.title");
 		releaseYear = movie.pick("$.year");
+		synopsis = movie.pick("$.synopsis");
 		
-		html = "<img src=\""+thumbnail.as("str")+"\"></img><br>Title: "+title.as("str")+"<br>"+releaseYear.as("str")+"<br>";
+		html = "<img src=\""+thumbnail.as("str")+"\"></img><br>Title: "+title.as("str")+"<br>"+releaseYear.as("str")+"<br>"+
+			"Synopsis: "+synopsis.as("str")+"<br>";
 	}
 	{
 		notify("Submitted", "");
