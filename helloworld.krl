@@ -10,7 +10,7 @@ ruleset b505218x0 {
 	global {
 	  searchRT = function(title) {
 			result = http:get("http://api.rottentomatoes.com/api/public/v1.0/movies.json", {"apikey": "e5nggrvdn9j839b98mjrex3k", "q": title, "page_limit": 1} );
-			json = result.pick("$.content").decode();
+			body = result.pick("$.content").decode();
 			movieArray = body.pick("$.movies");
 			movie = movieArray[0];
 			movie;
