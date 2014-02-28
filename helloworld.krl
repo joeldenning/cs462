@@ -43,8 +43,11 @@ ruleset b505218x0 {
 		score = movie.pick("$.ratings").pick("$.critics_score");
 		rating = movie.pick("$.ratings").pick("$.critics_rating");
 		
-		html = "<div id=\"main\"><img src=\""+thumbnail+"\"></img><br>Title: "+title+"<br>"+releaseYear+"<br>"+
+		html = (title == 0) => "<div id=\"main\"><img src=\""+thumbnail+"\"></img><br>Title: "+title+"<br>"+releaseYear+"<br>"+
 			"Synopsis: "+synopsis+"<br>Critics rating: "+score+"   "+rating+"<br><br><br><form id=\"myform\" action=\"\">"+
+			"Title: <input type=\"text\" name=\"title\"><br>"+
+			"Enter another title: <input type=\"submit\"></div>" | "<div id=\"myform\">No Movie Found</div>"+
+			"<form id=\"myform\" action=\"\">"+
 			"Title: <input type=\"text\" name=\"title\"><br>"+
 			"Enter another title: <input type=\"submit\"></div>";
 	}
