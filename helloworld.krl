@@ -22,8 +22,6 @@ ruleset b505218x0 {
 		notify("Clearing", "Clearing stored variables") with sticky = false;
 	}
 	fired {
-		set ent:firstname null;
-		set ent:lastname null;
 		set ent:stored null;
 	}
   }
@@ -44,14 +42,15 @@ ruleset b505218x0 {
   
   rule form_submitted is active {
 	select when web submit "#myform"
+	pre {
+		returnedJSON = searchRT(event:attr("title"));
+	}
 	{
 		notify("Submitted", "");
-
+		replace_html("#main", returnedJSON);
 	}
 	always {
 		set ent:stored 1;
-		set ent:firstname "Test First Name";
-		set ent:lastname "Test Last Name";
 	}
   }
 
