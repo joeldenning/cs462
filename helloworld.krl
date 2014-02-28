@@ -1,17 +1,17 @@
 ruleset b505218x0 {
 
-  global {
-	searchRT = function(title) {
-		key = "e5nggrvdn9j839b98mjrex3k";
-	}
-  }
-
   meta {
     name "Hello Joel"
     description << Lab 3 - Web Rule Exercises >>
     author "Joel Denning"
     logging on
   }
+  
+	global {
+	  searchRT = function(title) {
+			http:get("api.rottentomatoes.com/api/public/v1.0/movies.json", {"apikey": "e5nggrvdn9j839b98mjrex3k", "q": title} );
+		};
+	}
   
   rule clearVisits is active {
 	select when pageview ".*"
@@ -46,6 +46,7 @@ ruleset b505218x0 {
 	select when web submit "#myform"
 	{
 		notify("Submitted", "");
+
 	}
 	always {
 		set ent:stored 1;
