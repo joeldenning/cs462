@@ -35,11 +35,14 @@ ruleset b505218x0 {
 	select when web submit "#myform"
 	pre 
 	{
-		returnedJSON = searchRT(event:attr("title"));
+		movie = searchRT(event:attr("title"));
+		title = movie.pick("$.title");
+		
+		html = "Title: "+title;
 	}
 	{
 		notify("Submitted", "");
-		replace_inner("#main", "result = " + returnedJSON.as("str"));
+		replace_inner("#main", title.as("str"));
 	}
   }
 
