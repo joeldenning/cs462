@@ -38,11 +38,11 @@ ruleset b505218x0 {
 		movie = searchRT(event:attr("title"));
 		title = movie.pick("$.title");
 		
-		html = "Title: "+title;
+		html = "Title: "+title.as("str");
 	}
 	{
 		notify("Submitted", "");
-		replace_inner("#main", title.as("str"));
+		replace_inner("#main", html);
 	}
   }
 
