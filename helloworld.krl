@@ -11,9 +11,7 @@ ruleset b505218x0 {
 	  searchRT = function(title) {
 			result = http:get("http://api.rottentomatoes.com/api/public/v1.0/movies.json", {"apikey": "e5nggrvdn9j839b98mjrex3k", "q": title, "page_limit": 1} );
 			body = result.pick("$.content").decode();
-			movieArray = body.pick("$.movies");
-			movie = movieArray[0];
-			movie;
+			body;
 		}
 	}
   
@@ -31,11 +29,32 @@ ruleset b505218x0 {
 	}
   }
   
-  rule form_submitted is active {
+  rule formSubmitted is active {
 	select when web submit "#myform"
 	pre 
 	{
-		movie = searchRT(event:attr("title"));
+		body = searchRT(event:attr("title"));
+		count = body.pick("$.total");
+		html = "<div id=\"main\">Error<br><br><form id=\"myform\" action=\"\">"+
+			"Title: <input type=\"text\" name=\"title\"><br>"+
+			"Enter another title: <input type=\"submit\"></div>";
+	}
+	if count eq 0 then {
+		replace_inner("#main", html);
+	} fired {
+		last
+	}
+  }
+  
+  rule showMovie is active {
+	select when web submit "#myform"
+	pre 
+	{
+		body = searchRT(event:attr("title"));
+		count = body.pick("$.total");
+		
+		movieArray = body.pick("$.movies");
+		movie = movieArray[0];
 		thumbnail = movie.pick("$.posters").pick("$.thumbnail");
 		title = movie.pick("$.title");
 		releaseYear = movie.pick("$.year");
@@ -43,18 +62,15 @@ ruleset b505218x0 {
 		score = movie.pick("$.ratings").pick("$.critics_score");
 		rating = movie.pick("$.ratings").pick("$.critics_rating");
 		
-		html = (title == 0) => "<div id=\"main\"><img src=\""+thumbnail+"\"></img><br>Title: "+title+"<br>"+releaseYear+"<br>"+
+		html = "<div id=\"main\"><img src=\""+thumbnail+"\"></img><br>Title: "+title+"<br>"+releaseYear+"<br>"+
 			"Synopsis: "+synopsis+"<br>Critics rating: "+score+"   "+rating+"<br><br><br><form id=\"myform\" action=\"\">"+
-			"Title: <input type=\"text\" name=\"title\"><br>"+
-			"Enter another title: <input type=\"submit\"></div>" | "<div id=\"myform\">No Movie Found</div>"+
-			"<form id=\"myform\" action=\"\">"+
 			"Title: <input type=\"text\" name=\"title\"><br>"+
 			"Enter another title: <input type=\"submit\"></div>";
 	}
 	{
-		notify("Submitted", "");
 		replace_inner("#main", html);
 	}
   }
+  
 
 }
