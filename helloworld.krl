@@ -48,7 +48,7 @@ ruleset b505218x0 {
 		//returnedJSON = searchRT(title);
 	}
 	{
-		notify("Submitted", "");
+		notify("Submitted", "hello");
 		replace_html("#main", "hello");
 	}
 	always {
