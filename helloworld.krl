@@ -1,4 +1,11 @@
 ruleset b505218x0 {
+
+  global {
+	searchRT = function(title) {
+		key = "e5nggrvdn9j839b98mjrex3k";
+	}
+  }
+
   meta {
     name "Hello Joel"
     description << Lab 3 - Web Rule Exercises >>
