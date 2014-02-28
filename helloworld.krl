@@ -49,7 +49,7 @@ ruleset b505218x0 {
 	}
 	{
 		notify("Submitted", "");
-		replace_html("#main", title);
+		replace_html("#main", "hello");
 	}
 	always {
 		set ent:stored 1;
