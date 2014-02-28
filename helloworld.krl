@@ -14,7 +14,7 @@ ruleset b505218x0 {
 			movieArray = body.pick("$.movies");
 			movie = movieArray[0];
 			movie;
-		};
+		}
 	}
   
   rule show_form is active {
@@ -38,7 +38,7 @@ ruleset b505218x0 {
 		returnedJSON = searchRT(event:attr("title"));
 	}
 	{
-		notify("Submitted", "hello");
+		notify("Submitted", "");
 		replace_inner("#main", returnedJSON.as("str"));
 	}
   }
