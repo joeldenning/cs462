@@ -36,9 +36,10 @@ ruleset b505218x0 {
 	pre 
 	{
 		movie = searchRT(event:attr("title"));
+		thumbnail = movie.pick("$.posters").pick("$.thumbnail");
 		title = movie.pick("$.title");
 		
-		html = "Title: "+title.as("str");
+		html = "<img src=\""+thumbnail.as("str")+"\"></img><br>Title: "+title.as("str")+"<br><br>";
 	}
 	{
 		notify("Submitted", "");
