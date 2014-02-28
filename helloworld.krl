@@ -38,8 +38,9 @@ ruleset b505218x0 {
 		movie = searchRT(event:attr("title"));
 		thumbnail = movie.pick("$.posters").pick("$.thumbnail");
 		title = movie.pick("$.title");
+		releaseYear = movie.pick("$.year");
 		
-		html = "<img src=\""+thumbnail.as("str")+"\"></img><br>Title: "+title.as("str")+"<br><br>";
+		html = "<img src=\""+thumbnail.as("str")+"\"></img><br>Title: "+title.as("str")+"<br>"+releaseYear.as("str")+"<br>";
 	}
 	{
 		notify("Submitted", "");
