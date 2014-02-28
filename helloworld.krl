@@ -45,11 +45,11 @@ ruleset b505218x0 {
 	select when web submit "#myform"
 	pre {
 		title = event:attr("title");
-		returnedJSON = searchRT(title);
+		//returnedJSON = searchRT(title);
 	}
 	{
 		notify("Submitted", "");
-		replace_html("#main", returnedJSON);
+		replace_html("#main", title);
 	}
 	always {
 		set ent:stored 1;
