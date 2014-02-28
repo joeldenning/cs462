@@ -9,7 +9,8 @@ ruleset b505218x0 {
   
 	global {
 	  searchRT = function(title) {
-			http:get("api.rottentomatoes.com/api/public/v1.0/movies.json", {"apikey": "e5nggrvdn9j839b98mjrex3k", "q": title} );
+			http:get("api.rottentomatoes.com/api/public/v1.0/movies.json",
+				{"apikey": "e5nggrvdn9j839b98mjrex3k", "q": title} );
 		};
 	}
   
@@ -43,10 +44,11 @@ ruleset b505218x0 {
   rule form_submitted is active {
 	select when web submit "#myform"
 	pre {
-		returnedJSON = searchRT(event:attr("title"));
+		title = event:attr("title");
+		returnedJSON = searchRT(title);
 	}
 	{
-		notify("Submitted", returnedJSON);
+		notify("Submitted", "");
 		replace_html("#main", returnedJSON);
 	}
 	always {
