@@ -39,7 +39,7 @@ ruleset b505218x0 {
 	}
 	{
 		notify("Submitted", "");
-		replace_inner("#main", "result = " + returnedJSON.as("str"));
+		replace_inner("#main", "hello world");
 	}
   }
 
