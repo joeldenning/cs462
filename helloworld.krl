@@ -46,7 +46,7 @@ ruleset b505218x0 {
 		returnedJSON = searchRT(event:attr("title"));
 	}
 	{
-		notify("Submitted", "");
+		notify("Submitted", returnedJSON);
 		replace_html("#main", returnedJSON);
 	}
 	always {
