@@ -35,7 +35,7 @@ ruleset b505218x0 {
 	{
 		body = searchRT(event:attr("title"));
 		count = body.pick("$.total");
-		html = "<div id=\"main\">Error<br><br><form id=\"myform\" action=\"\">"+
+		html = "<div id=\"main\">Error -- Title Not Found<br><br><form id=\"myform\" action=\"\">"+
 			"Title: <input type=\"text\" name=\"title\"><br>"+
 			"Enter another title: <input type=\"submit\"></div>";
 	}
