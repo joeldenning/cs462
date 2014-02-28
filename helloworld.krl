@@ -21,7 +21,7 @@ ruleset b505218x0 {
     select when pageview ".*"
 	pre 
 	{
-		html = (ent:stored == 1) => "<p>Hello "+ent:firstname+" "+ent:lastname+"</p>" | "<form id=\"myform\" action=\"\">"+
+		html = "<form id=\"myform\" action=\"\">"+
 			"Title: <input type=\"text\" name=\"title\"><br>"+
 			"<input type=\"submit\">";
 	}
