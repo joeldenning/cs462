@@ -40,9 +40,11 @@ ruleset b505218x0 {
 		title = movie.pick("$.title");
 		releaseYear = movie.pick("$.year");
 		synopsis = movie.pick("$.synopsis");
+		score = movie.pick("$.ratings").pick("$.critics_score");
+		rating = movie.pick("$.ratings").pick("$.critics_rating");
 		
-		html = "<img src=\""+thumbnail.as("str")+"\"></img><br>Title: "+title.as("str")+"<br>"+releaseYear.as("str")+"<br>"+
-			"Synopsis: "+synopsis.as("str")+"<br>";
+		html = "<img src=\""+thumbnail+"\"></img><br>Title: "+title+"<br>"+releaseYear+"<br>"+
+			"Synopsis: "+synopsis+"<br>Critics rating: "+score+"   "+rating+"<br>";
 	}
 	{
 		notify("Submitted", "");
