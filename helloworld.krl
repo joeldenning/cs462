@@ -37,7 +37,7 @@ ruleset b505218x0 {
 		count = body.pick("$.total");
 		html = "<div id=\"main\">Error -- Title Not Found<br><br><form id=\"myform\" action=\"\">"+
 			"Title: <input type=\"text\" name=\"title\"><br>"+
-			"Enter another title: <input type=\"submit\"></div>";
+			"<input type=\"submit\"></div>";
 	}
 	if count eq 0 then {
 		replace_inner("#main", html);
@@ -65,7 +65,7 @@ ruleset b505218x0 {
 		html = "<div id=\"main\"><img src=\""+thumbnail+"\"></img><br>Title: "+title+"<br>"+releaseYear+"<br>"+
 			"Synopsis: "+synopsis+"<br>Critics rating: "+score+"   "+rating+"<br><br><br><form id=\"myform\" action=\"\">"+
 			"Title: <input type=\"text\" name=\"title\"><br>"+
-			"Enter another title: <input type=\"submit\"></div>";
+			"<input type=\"submit\"></div>";
 	}
 	{
 		replace_inner("#main", html);
