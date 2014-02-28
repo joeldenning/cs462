@@ -21,9 +21,9 @@ ruleset b505218x0 {
     select when pageview ".*"
 	pre 
 	{
-		html = "<form id=\"myform\" action=\"\">"+
+		html = "<div id=\"main\"><form id=\"myform\" action=\"\">"+
 			"Title: <input type=\"text\" name=\"title\"><br>"+
-			"<input type=\"submit\">";
+			"<input type=\"submit\"></div>";
 	}
 	{
 		replace_html("#main", html);
@@ -39,7 +39,7 @@ ruleset b505218x0 {
 	}
 	{
 		notify("Submitted", "");
-		replace_inner("#main", "hello world");
+		replace_inner("#main", "result = " + returnedJSON.as("str"));
 	}
   }
 
