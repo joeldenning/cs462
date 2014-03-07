@@ -15,18 +15,31 @@ ruleset FourSquareCheckin {
     pre {
       data = event:attr("checkin").decode();
       venue = data.pick("$..venue");
+      shout = data.pick("$..shout");
+      city = data.pick("$.city");
+      createdAt = data.pick("$.createdAt");
     }
     fired {
       set ent:venue venue;
+      set ent:shout shout;
+      set ent:city city;
+      set ent:createdAt createdAt;
     }
   }
   
   rule display {
     select when cloudAppSelected
     pre {
-      v = ent:venue.pick("$.name").as("str");
+      venue = ent:venue.pick("$.name").as("str");
+      shout = ent:name.as("str");
+      city = ent:city.as("str");
+      createdAt = ent:createdAt.as("str");
+      
       html = <<
-        <b>I Was At: </b> #{v}<br/>
+        <b>I Was At: </b> #{venue}<br/>
+        <b>Shout: </b> #{shout}<br/>
+        <b>City: </b> #{city}<br/>
+        <b>Created At: </b> #{createdAt}<br/>
       >>
     }
     CloudRain:createLoadPanel("Foursquare", {}, html);
