@@ -32,7 +32,7 @@ ruleset FourSquareCheckin {
     select when cloudAppSelected
     pre {
       venue = ent:venue.pick("$.name").as("str");
-      shout = ent:name.as("str");
+      shout = ent:shout.as("str");
       city = ent:city.as("str");
       createdAt = ent:createdAt.as("str");
       data = ent:data.as("str");
