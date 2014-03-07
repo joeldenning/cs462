@@ -17,13 +17,23 @@ ruleset HelloWorldApp {
   rule process_fs_checkin is active {
     select when foursquare checkin
     pre {
-      my_html = <<
-        <h5>Hello, world fs checkin!</h5>
-      >>;
+      data = event:attr("checkin").decode()
+      venue = data.pick("$..venue");
     }
-    {
-      SquareTag:inject_styling();
-      CloudRain:createLoadPanel("Hello World!", {}, my_html);
+    fired {
+      set ent:venue venue;
     }
+  }
+  
+  rule display is active {
+    select when cloudAppSelected
+    pre {
+      v = ent:venue.pick("$.name").as("str");
+      html = <<
+        <b>I Was At: </b> #{v}<br/>
+      >>
+    }
+    CloudRain:createLoadPanel("Foursquare", {}, html);
+    
   }
 }
