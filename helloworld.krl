@@ -16,13 +16,13 @@ ruleset FourSquareCheckin {
       data = event:attr("checkin").decode();
       venue = data.pick("$..venue");
       shout = data.pick("$..shout");
-      city = data.pick("$..city");
+      c = data.pick("$..city");
       createdAt = data.pick("$..createdAt");
     }
     fired {
       set ent:venue venue;
       set ent:shout shout;
-      set ent:city city;
+      set ent:c c;
       set ent:createdAt createdAt;
       set ent:data event:attr("checkin").as("str");
     }
@@ -33,14 +33,14 @@ ruleset FourSquareCheckin {
     pre {
       venue = ent:venue.pick("$.name").as("str");
       shout = ent:shout.as("str");
-      city = ent:city.as("str");
+      c = ent:c.as("str");
       createdAt = ent:createdAt.as("str");
       data = ent:data.as("str");
       
       html = <<
         <b>I Was At: </b> #{venue}<br/>
         <b>Shout: </b> #{shout}<br/>
-        <b>City: </b> #{city}<br/>
+        <b>City: </b> #{c}<br/>
         <b>Created At: </b> #{createdAt}<br/>
         #{data}
       >>
