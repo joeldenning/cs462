@@ -13,7 +13,7 @@ ruleset FourSquareCheckin {
   rule process_fs_checkin {
     select when foursquare checkin
     pre {
-      data = event:attr("checkin").decode()
+      data = event:attr("checkin").decode();
       venue = data.pick("$..venue");
     }
     fired {
