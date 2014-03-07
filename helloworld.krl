@@ -16,8 +16,8 @@ ruleset FourSquareCheckin {
       data = event:attr("checkin").decode();
       venue = data.pick("$..venue");
       shout = data.pick("$..shout");
-      city = data.pick("$.city");
-      createdAt = data.pick("$.createdAt");
+      city = data.pick("$..city");
+      createdAt = data.pick("$..createdAt");
     }
     fired {
       set ent:venue venue;
