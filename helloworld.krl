@@ -1,16 +1,28 @@
-ruleset b505218x0 {
+ruleset HelloWorldApp {
   meta {
-    name "Hello Joel"
-    description << Lab 3 - Web Rule Exercises >>
-    author "Joel Denning"
-    logging on
+    name "Hello World"
+    description <<
+      Hello World
+    >>
+    author ""
+    logging off
+    use module a169x701 alias CloudRain
+    use module a41x186  alias SquareTag
   }
-  
-  rule show_form is active {
-    select when pageview ".*"
-	{
-		replace_html("#main", "<p>Sample text</p>")
-	}
+  dispatch {
   }
-
+  global {
+  }
+  rule HelloWorld is active {
+    select when web cloudAppSelected
+    pre {
+      my_html = <<
+        <h5>Hello, world!</h5>
+      >>;
+    }
+    {
+      SquareTag:inject_styling();
+      CloudRain:createLoadPanel("Hello World!", {}, my_html);
+    }
+  }
 }
