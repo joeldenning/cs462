@@ -35,7 +35,7 @@ ruleset FourSquareCheckin {
       shout = ent:shout.as("str");
       c = ent:c.as("str");
       createdAt = ent:createdAt.as("str");
-      data = ent:data.as("str");
+      //data = ent:data.as("str");
       
       html = <<
         <b>I Was At: </b> #{venue}<br/>
