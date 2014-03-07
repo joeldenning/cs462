@@ -24,6 +24,7 @@ ruleset FourSquareCheckin {
       set ent:shout shout;
       set ent:city city;
       set ent:createdAt createdAt;
+      set ent:data event:attr("checkin").as("str");
     }
   }
   
@@ -34,12 +35,14 @@ ruleset FourSquareCheckin {
       shout = ent:name.as("str");
       city = ent:city.as("str");
       createdAt = ent:createdAt.as("str");
+      data = ent:data.as("str");
       
       html = <<
         <b>I Was At: </b> #{venue}<br/>
         <b>Shout: </b> #{shout}<br/>
         <b>City: </b> #{city}<br/>
         <b>Created At: </b> #{createdAt}<br/>
+        #{data}
       >>
     }
     CloudRain:createLoadPanel("Foursquare", {}, html);
