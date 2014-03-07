@@ -15,7 +15,7 @@ ruleset HelloWorldApp {
   }
   
   rule process_fs_checkin is active {
-    select when foursquare checkin
+    select when web cloudAppSelected
     pre {
       my_html = <<
         <h5>Hello, world fs checkin!</h5>
