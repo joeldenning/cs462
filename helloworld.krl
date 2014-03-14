@@ -55,7 +55,6 @@ rule display_checkin{
 			  <b>In: </b> #{c}<br/>
 			  <b>Yelling: </b> #{s}<br/>
 			  <b>On: </b> #{ca}<br/>
-			  <b> AND NOW IM GONE </b>
 			  <br/>
 			  >>;
 	  }
