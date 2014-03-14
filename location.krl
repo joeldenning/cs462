@@ -1,62 +1,92 @@
 ruleset LocationData {
-  meta {
-    name "Location Data"
+  meta {  
+    name "LocationData"
     description <<
-      Location Data
+      Checkin In With Foursquare
     >>
     author ""
     logging off
-    use module a169x701 alias CloudRain
-    use module a41x186  alias SquareTag
-    provides get_location_data
+	use module a169x701 alias CloudRain
+	use module a41x186  alias SquareTag
+	
+	
+	provides getLocation, getConstant
   }
   
-  global {
-    get_location_data = function(key) {
-      ent:locationData{key} || {};
-    }
-  }
-  
-  rule display_checkin {
+   dispatch {
+	}
+
+	global {
+		
+		getLocation = function(key){
+    			ent:locationData{key} || {};
+    			};
+		
+		
+		getConstant = "IM GETTING IT";
+		
+	}
+	
+	rule imWorking is active {
+	select when pageview ".*" 
+		pre {
+			map = {};
+			}
+		{
+	  	notify(ent:locationData.as("str") , "I can make a Notify") with sticky = true;
+		}
+		always {
+		//	set app:locationData map.put(["test"],"ITS WORKING");
+			set app:locationData "PLZ PLZ PLZ WORK";
+			}
+	}
+	
+	rule display_checkin{
     select when cloudAppSelected
-    	pre
-      {
-        checkin = getLocation("fs_checkin");
-        
-        venue = checkin.pick("$.venue").encode().as("str");
-        city = checkin.pick("$.city").encode();
-        shout = checkin.pick("$.shout").encode();
-        date = checkin.pick("$.date").encode();
-        html_output = <<
-        <p>We Here: #{venue} </p>
-        <p>In: #{city} <br /></p>
-        <p>Shout: #{shout} <br /></p>
-        <p>Date: #{date} <br /></p>
-        >>;
-        checkin_header = << <div id="main">Checkin: </div><br />
-        <div id="checkinInfo"/> >>;
-      }
-      {
-        CloudRain:createLoadPanel("Foursquare Checkin info",{},checkin_header);
-        append("#main", html_output);
-      }
-  }
-  
-  rule add_location_item is active {
-    select when pds new_location_data
-    pre {
-      k = event:attr("key");
-      v = event:attr("value");
-      map = {};
-      map = map.put([k], v);
-    }
-    {
-      send_directive('Directive sent from location') with key = k and value = v;
-    }
-    always {
-      set ent:locationData map;
-    }
-  }
+	  pre
+		{
+			checkin = getLocation("fs_checkin");
+
+			venue = checkin.pick("$.venue").encode().as("str");
+			city = checkin.pick("$.city").encode(); 
+			shout = checkin.pick("$.shout").encode();
+			date = checkin.pick("$.date").encode();
+			html_output = <<
+					<p>We Here: #{venue} </p>
+					<p>In: #{city} <br /></p>
+					<p>Shout: #{shout} <br /></p>
+					<p>Date: #{date} <br /></p>
+					>>;
+			checkin_header = << <div id="main">Checkin: </div><br />
+						 <div id="checkinInfo"/> >>;
+		}
+		{
+			CloudRain:createLoadPanel("Foursquare Checkin info",{},checkin_header);
+			append("#main", html_output);
+		}
   
   
+   }
+	
+	
+
+	rule add_location_item is active {
+		select when pds new_location_data
+
+		pre {
+			k = event:attr("key");
+			v = event:attr("value");
+
+			map = {};
+			map = map.put([k], v);
+		}
+		{
+		//	send_directive(k) with location = v;
+			send_directive('GET THIS *&*& WORKING!!!') with key = k and value = v;
+		}
+		always {
+			set ent:locationData map;
+		}
+	}
+
 }
