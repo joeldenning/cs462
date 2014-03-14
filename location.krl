@@ -17,9 +17,8 @@ ruleset location_data {
     }
   }
   
-  rule debug is active {
-    select when web cloudAppSelected
-    notify("Location Data ruleset is alive", ent:locationData.as("str")) with sticky = true;
+  dispatch {
+  
   }
   
   rule display_checkin {
@@ -60,7 +59,7 @@ ruleset location_data {
       notify("Location Data ruleset received event!", "Woo hoo!") with sticky = true;
     }
     always {
-      set ent:locationData "Location Data set";
+      set ent:locationData map;
     }
   }
   
