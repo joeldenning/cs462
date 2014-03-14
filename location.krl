@@ -11,6 +11,10 @@ ruleset location_data {
     provides get_location_data
   }
   
+  dispatch {
+  
+  }
+  
   global {
     get_location_data = function(key) {
       ent:map.pick(key);
