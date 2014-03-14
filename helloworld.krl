@@ -8,6 +8,7 @@ ruleset FourSquareCheckin {
     logging off
     use module a169x701 alias CloudRain
     use module a41x186  alias SquareTag
+    use module b505218x1 alias location_data
   }
   
   rule process_fs_checkin {
