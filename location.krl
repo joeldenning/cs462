@@ -25,7 +25,7 @@ ruleset location_data {
     pre {
       key = event:attr("key");
       value = event:attr("value");
-      map = {}
+      map = {};
       map = map.put([key], value);
     }
     {
