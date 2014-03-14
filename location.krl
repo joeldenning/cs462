@@ -13,7 +13,7 @@ ruleset LocationData {
   
   global {
     get_location_data = function(key) {
-      ent:locationData.pick(key);
+      ent:locationData{key} || {};
     }
   }
   
