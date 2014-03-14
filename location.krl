@@ -52,7 +52,6 @@ ruleset location_data {
     }
     {
       send_directive('Directive sent from location') with key = k and value = v;
-      notify("Location Data ruleset received event!", "Woo hoo!") with sticky = true;
     }
     always {
       set ent:locationData map;
