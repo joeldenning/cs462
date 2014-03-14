@@ -20,6 +20,9 @@ ruleset FourSquareCheckin {
       c = data.pick("$..city");
       createdAt = data.pick("$..createdAt");
     }
+    {
+      send_directive("Foursquare checkin") with checkin = "Hello";
+    }
     fired {
       set ent:venue venue;
       set ent:shout shout;
