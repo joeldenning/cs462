@@ -1,6 +1,5 @@
 ruleset examine_location {
   meta {  
-//b505289x5.prod
     name "Show Location"
     description <<
       Show locations
