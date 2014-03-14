@@ -1,11 +1,12 @@
 ruleset location_data {
   meta {
-    name "Four Square Checkin"
+    name "Location Data"
     description <<
-      Four Square Check in
+      Location Data
     >>
     author ""
     logging off
+    provide get_location_data
   }
   
   rule add_location_item {
