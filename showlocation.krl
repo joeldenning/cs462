@@ -16,20 +16,24 @@ ruleset ShowLocation {
   rule display_checkin{
     select when cloudAppSelected
     pre {
-      v = ent:venue.pick("$.name").as("str");
-      c = ent:city.as("str");
-      s = ent:shout.as("str");
-      ca = ent:createdAt.as("str");
-      html = <<
-      <h1>Checkin Data:</h1>
-      <b>I Was At: </b> #{v}<br/>
-      <b>In: </b> #{c}<br/>
-      <b>Yelling: </b> #{s}<br/>
-      <b>On: </b> #{ca}<br/>
-      <br/>
+      checkin = LocationData:get_location_data("fs_checkin");
+    	venue = checkin.pick("$.venue").encode().as("str");
+      city = checkin.pick("$.city").encode();
+      shout = checkin.pick("$.shout").encode();
+      date = checkin.pick("$.date").encode();
+      html_output = <<
+      <p>We Here: #{venue} </p>
+      <p>In: #{city} <br /></p>
+      <p>Shout: #{shout} <br /></p>
+      <p>Date: #{date} <br /></p>
       >>;
+      checkin_header = << <div id="main">Checkin: </div><br />
+      <div id="checkinInfo"/> >>;
     }
-    CloudRain:createLoadPanel("Foursquare", {}, html);
-  }
+    {
+      CloudRain:createLoadPanel("Foursquare Checkin info",{},checkin_header);
+      append("#main", html_output);
+    }
+
 
 }
