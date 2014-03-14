@@ -9,11 +9,11 @@ ruleset location_data {
     provides get_location_data
   }
   
-//  global {
-//    get_location_data = function(key) {
-//      ent:map.pick(key);
-//    }
-//  }
+  global {
+    get_location_data = function(key) {
+      ent:map.pick(key);
+    }
+  }
   
   rule debug is active {
     select when web cloudAppSelected
