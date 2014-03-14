@@ -11,7 +11,7 @@ ruleset location_data {
   
   global {
     get_location_data = function(key) {
-      ent:map.pick(key)
+      ent:map.pick(key);
     }
   }
   
