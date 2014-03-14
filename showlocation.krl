@@ -1,9 +1,9 @@
-ruleset ShowLocation {
+ruleset examine_location {
   meta {  
 //b505289x5.prod
     name "Show Location"
     description <<
-      Checkin In With Foursquare
+      Show locations
     >>
     author ""
     logging off
@@ -17,7 +17,7 @@ ruleset ShowLocation {
   dispatch {
 	}
 	
-  rule display_checkin{
+  rule access_location_cloud {
     select when cloudAppSelected
 	  pre
 		{
