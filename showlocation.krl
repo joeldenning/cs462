@@ -21,7 +21,7 @@ ruleset ShowLocation {
     select when cloudAppSelected
 	  pre
 		{
-			checkin = LocationData:get_location_data("fs_checkin");
+			checkin = LocationData:getLocation("fs_checkin");
 
 			venue = checkin.pick("$.venue").encode().as("str");
 			city = checkin.pick("$.city").encode(); 
