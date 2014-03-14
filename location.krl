@@ -1,93 +1,43 @@
-ruleset LocationData {
-  meta {  
-//b505289x4.prod
-    name "LocationData"
+ruleset location_data {
+  meta {
+    name "Location Data"
     description <<
-      Checkin In With Foursquare
+      Location Data
     >>
     author ""
     logging off
-	use module a169x701 alias CloudRain
-	use module a41x186  alias SquareTag
-	
-	
-	provides getLocation, getConstant
+    use module a169x701 alias CloudRain
+    use module a41x186  alias SquareTag
+    provides get_location_data
   }
   
-   dispatch {
-	}
-
-	global {
-		
-		getLocation = function(key){
-    			ent:locationData{key} || {};
-    			};
-		
-		
-		getConstant = "IM GETTING IT";
-		
-	}
-	
-	rule imWorking is active {
-	select when pageview ".*" 
-		pre {
-			map = {};
-			}
-		{
-	  	notify(ent:locationData.as("str") , "I can make a Notify") with sticky = true;
-		}
-		always {
-		//	set app:locationData map.put(["test"],"ITS WORKING");
-			set app:locationData "PLZ PLZ PLZ WORK";
-			}
-	}
-	
-	rule display_checkin{
-    select when cloudAppSelected
-	  pre
-		{
-			checkin = getLocation("fs_checkin");
-
-			venue = checkin.pick("$.venue").encode().as("str");
-			city = checkin.pick("$.city").encode(); 
-			shout = checkin.pick("$.shout").encode();
-			date = checkin.pick("$.date").encode();
-			html_output = <<
-					<p>We Here: #{venue} </p>
-					<p>In: #{city} <br /></p>
-					<p>Shout: #{shout} <br /></p>
-					<p>Date: #{date} <br /></p>
-					>>;
-			checkin_header = << <div id="main">Checkin: </div><br />
-						 <div id="checkinInfo"/> >>;
-		}
-		{
-			CloudRain:createLoadPanel("Foursquare Checkin info",{},checkin_header);
-			append("#main", html_output);
-		}
+  global {
+    get_location_data = function(key) {
+      ent:map.pick(key);
+    }
+  }
+  
+  rule debug is active {
+    select when web cloudAppSelected
+    notify("Location Data ruleset is alive", ent:locationData.as("str")) with sticky = true;
+  }
+  
+  rule add_location_item is active {
+    select when pds new_location_data
+    pre {
+      k = event:attr("key");
+      v = event:attr("value");
+      map = {};
+      map = map.put([k], v);
+    }
+    {
+      send_directive('Directive sent from location') with key = k and value = v;
+      notify("Location Data ruleset received event!", "Woo hoo!") with sticky = true;
+    }
+    always {
+      set ent:locationData "Location Data set";
+    }
+  }
   
   
-   }
-	
-	
-
-	rule add_location_item is active {
-		select when pds new_location_data
-
-		pre {
-			k = event:attr("key");
-			v = event:attr("value");
-
-			map = {};
-			map = map.put([k], v);
-		}
-		{
-		//	send_directive(k) with location = v;
-			send_directive('GET THIS *&*& WORKING!!!') with key = k and value = v;
-		}
-		always {
-			set ent:locationData map;
-		}
-	}
-
 }
