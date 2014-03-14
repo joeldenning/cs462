@@ -10,7 +10,7 @@ ruleset FourSquareCheckin {
 	use module a169x701 alias CloudRain
 	use module a41x186  alias SquareTag
 	
-	use module b505289x4 alias LocationData
+	use module b505218x1 alias LocationData
 
 	
   }
@@ -35,7 +35,7 @@ ruleset FourSquareCheckin {
         set ent:createdAt createdAt;
 	set ent:data event:attr("checkin").as("str");
 	
-	raise pds event new_location_data for b505289x4
+	raise pds event new_location_data for b505218x1
 		with key = "fs_checkin"
 	//	and value = "Is It Working";
 		and value = {"venue" : venue.pick("$.name"), "city" : city, "shout" : shout, "date" : createdAt};
