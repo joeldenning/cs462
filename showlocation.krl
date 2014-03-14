@@ -32,11 +32,9 @@ ruleset examine_location {
 					<p>Shout: #{shout} <br /></p>
 					<p>Date: #{date} <br /></p>
 					>>;
-			checkin_header = << <div id="main">Checkin: </div><br />
-						 <div id="checkinInfo"/> >>;
 		}
 		{
-			CloudRain:createLoadPanel("Foursquare Checkin info",{},checkin_header);
+			CloudRain:createLoadPanel("Foursquare Checkin info",{},"");
 			append("#main", html_output);
 		}
   
