@@ -26,14 +26,14 @@ ruleset examine_location {
 			city = checkin.pick("$.city").encode(); 
 			shout = checkin.pick("$.shout").encode();
 			date = checkin.pick("$.date").encode();
+			squareTagHeader = << <div id="main">Checkin: </div><br />
+ 						 <div id="checkinInfo"/> >>;
 			html_output = <<
 					<p>We Here: #{venue} </p>
 					<p>In: #{city} <br /></p>
 					<p>Shout: #{shout} <br /></p>
 					<p>Date: #{date} <br /></p>
 					>>;
-			squareTagHeader = << <div id="main">Checkin: </div><br />
- 						 <div id="checkinInfo"/> >>;
 		}
 		{
 			CloudRain:createLoadPanel("View Checkins From Cloud",{},squareTagHeader);
