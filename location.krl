@@ -20,20 +20,20 @@ ruleset location_data {
     notify("Location Data ruleset is alive", ent:locationData.as("str")) with sticky = true;
   }
   
-  rule add_location_item is active {
-    select when pds new_location_data
-    pre {
-      key = event:attr("key");
-      value = event:attr("value");
-      map = {}
-      map = map.put([key], value);
-    }
-    {
-      notify("Location Data ruleset received event!", "Woo hoo!") with sticky = true;
-    }
-    always {
-      set ent:locationData map;
-    }
+//  rule add_location_item is active {
+//    select when pds new_location_data
+//    pre {
+//      key = event:attr("key");
+//      value = event:attr("value");
+//      map = {}
+//      map = map.put([key], value);
+//    }
+//    {
+//      notify("Location Data ruleset received event!", "Woo hoo!") with sticky = true;
+//    }
+//    always {
+//      set ent:locationData map;
+//    }
   
   }
   
