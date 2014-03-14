@@ -28,6 +28,9 @@ ruleset location_data {
       map = {}
       map = map.put([key], value);
     }
+    {
+      notify("Location Data ruleset received event!", "Woo hoo!") with sticky = true;
+    }
     always {
       set ent:locationData map;
     }
