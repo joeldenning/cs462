@@ -34,7 +34,7 @@ ruleset examine_location {
 					>>;
 		}
 		{
-			CloudRain:createLoadPanel("Foursquare Checkin - from my Location Cloud",{},"");
+			CloudRain:createLoadPanel("View Checkins From Cloud",{},"");
 			append("#main", html_output);
 		}
   
