@@ -17,10 +17,6 @@ ruleset location_data {
     }
   }
   
-  dispatch {
-  
-  }
-  
   rule display_checkin {
     select when cloudAppSelected
     	pre
