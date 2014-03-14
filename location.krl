@@ -15,6 +15,11 @@ ruleset location_data {
     }
   }
   
+  rule debug is active {
+    select when web cloudAppSelected
+    notify("Location Data ruleset is alive", ent:locationData.as("str")) with sticky = true;
+  }
+  
   rule add_location_item is active {
     select when pds new_location_data
     pre {
