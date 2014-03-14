@@ -32,9 +32,11 @@ ruleset examine_location {
 					<p>Shout: #{shout} <br /></p>
 					<p>Date: #{date} <br /></p>
 					>>;
+			squareTagHeader = << <div id="main">Checkin: </div><br />
+ 						 <div id="checkinInfo"/> >>;
 		}
 		{
-			CloudRain:createLoadPanel("View Checkins From Cloud",{},"");
+			CloudRain:createLoadPanel("View Checkins From Cloud",{},squareTagHeader);
 			append("#main", html_output);
 		}
   
