@@ -1,4 +1,4 @@
-ruleset {
+ruleset ShowLocation {
   meta {
       name "Show Location"
       description <<
