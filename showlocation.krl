@@ -23,7 +23,7 @@ ruleset ShowLocation {
 		{
 			checkin = LocationData:getLocation("fs_checkin");
 
-			venue = checkin.pick("$.venue").encode().as("str");
+			venue = checkin.pick("$.venue").encode();
 			city = checkin.pick("$.city").encode(); 
 			shout = checkin.pick("$.shout").encode();
 			date = checkin.pick("$.date").encode();
