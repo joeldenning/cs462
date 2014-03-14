@@ -25,17 +25,17 @@ ruleset location_data {
   rule add_location_item is active {
     select when pds new_location_data
     pre {
-      key = event:attr("key");
-      value = event:attr("value");
+      k = event:attr("key");
+      v = event:attr("value");
       map = {};
-      map = map.put([key], value);
+      map = map.put([k], v);
     }
     {
       send_directive('Directive sent from location') with key = k and value = v;
       notify("Location Data ruleset received event!", "Woo hoo!") with sticky = true;
     }
     always {
-      set ent:locationData map;
+      set ent:locationData "Location Data set";
     }
   }
   
