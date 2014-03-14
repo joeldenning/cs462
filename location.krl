@@ -22,6 +22,31 @@ ruleset location_data {
     notify("Location Data ruleset is alive", ent:locationData.as("str")) with sticky = true;
   }
   
+  rule display_checkin {
+    select when cloudAppSelected
+    	pre
+      {
+        checkin = getLocation("fs_checkin");
+        
+        venue = checkin.pick("$.venue").encode().as("str");
+        city = checkin.pick("$.city").encode();
+        shout = checkin.pick("$.shout").encode();
+        date = checkin.pick("$.date").encode();
+        html_output = <<
+        <p>We Here: #{venue} </p>
+        <p>In: #{city} <br /></p>
+        <p>Shout: #{shout} <br /></p>
+        <p>Date: #{date} <br /></p>
+        >>;
+        checkin_header = << <div id="main">Checkin: </div><br />
+        <div id="checkinInfo"/> >>;
+      }
+      {
+        CloudRain:createLoadPanel("Foursquare Checkin info",{},checkin_header);
+        append("#main", html_output);
+      }
+  }
+  
   rule add_location_item is active {
     select when pds new_location_data
     pre {
