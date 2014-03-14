@@ -6,7 +6,7 @@ ruleset location_data {
     >>
     author ""
     logging off
-    provide get_location_data
+    provides get_location_data
   }
   
   global {
@@ -15,14 +15,16 @@ ruleset location_data {
     }
   }
   
-  rule add_location_item {
-    select when pds:new_location_data
+  rule add_location_item is active {
+    select when pds new_location_data
     pre {
       key = event:attr("key");
       value = event:attr("value");
+      map = {}
+      map = map.put([key], value);
     }
-    fired {
-      ent:map.put( [ key ], value );
+    always {
+      set ent:locationData map;
     }
   
   }
