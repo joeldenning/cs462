@@ -16,26 +16,12 @@ ruleset ShowLocation {
   
   dispatch {
 	}
-
-
-  rule show_fs_location is active {
-		select when pageview ".*" 
-		pre {
-			checkin = LocationData:getLocation();
-		//	checkin = LocationData:getConstant();
-		}
-		{
-	  	notify(checkin.decode(), "I can make a Notify") with sticky = true;
-	  	notify("doing Something I Hope" , "I can make a Notify") with sticky = true;
-	  	
-		}
-	}
 	
   rule display_checkin{
     select when cloudAppSelected
 	  pre
 		{
-			checkin = LocationData:getLocation("fs_checkin");
+			checkin = LocationData:get_location_data("fs_checkin");
 
 			venue = checkin.pick("$.venue").encode().as("str");
 			city = checkin.pick("$.city").encode(); 
