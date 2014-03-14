@@ -9,6 +9,12 @@ ruleset location_data {
     provide get_location_data
   }
   
+  global {
+    get_location_data = function(key) {
+      ent:map.pick(key)
+    }
+  }
+  
   rule add_location_item {
     select when pds:new_location_data
     pre {
