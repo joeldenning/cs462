@@ -1,4 +1,4 @@
-ruleset location_data {
+ruleset LocationData {
   meta {
     name "Location Data"
     description <<
