@@ -15,7 +15,6 @@ ruleset location_data {
       value = event:attr("value");
     }
     fired {
-      ent:map = {};
       ent:map.put( [ key ], value );
     }
   
