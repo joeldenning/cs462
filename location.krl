@@ -31,6 +31,7 @@ ruleset location_data {
       map = map.put([key], value);
     }
     {
+      send_directive('Directive sent from location') with key = k and value = v;
       notify("Location Data ruleset received event!", "Woo hoo!") with sticky = true;
     }
     always {
