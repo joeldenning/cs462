@@ -1,4 +1,4 @@
-//b505218x3
+//b505218x7
 ruleset FourSquareCheckin {
   meta {  
     name "FourSquare CheckIn"
