@@ -12,7 +12,7 @@ ruleset b505218x10 {
         
   } 
     rule sms {
-      select when pageview ".*"
+      select when cloudAppSelected
       {
         notify("Notification 1", "This is a notification") with sticky = true;
         twilio:send_sms("18015560842", "13852357284", "event was raised!!");
