@@ -13,7 +13,7 @@ ruleset b505218x10 {
   } 
     rule sms {
       select when location_nearby
-      twilio:send_sms("18015560842", "13852357284", "test message");
+      twilio:send_sms("18015560842", "13852357284", "event was raised!!");
     }
    
 }
