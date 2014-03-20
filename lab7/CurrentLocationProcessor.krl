@@ -12,19 +12,43 @@ ruleset CurrentLocationProcessor {
 
   }
   
+  global {
+  	distanceBetweenTwoPoints(lat1, lng1, lat2, lng2) {
+  		r90   = math:pi()/2;      
+      rEm   = 3963.1676;         // radius of the Earth in mi
+       
+      rlata = math:deg2rad(lata);
+      rlnga = math:deg2rad(lnga);
+      rlatb = math:deg2rad(latb);
+      rlngb = math:deg2rad(lngb);
+      distance = math:great_circle_distance(rlnga,r90 - rlata, rlngb,r90 - rlatb, rEm);
+      distance;
+  	}
+  	
+  	calculateDistance(curLat, curLng) {
+  		lastCheckin = Location:getLocation("fs_checkin");
+      checkinLat = lastCheckin.pick("$.lat");
+      checkinLong = lastCheckin.pick("$.lng");
+      d = distanceBetweenTwoPoints(curLat, curLng, checkinLat, checkingLong);
+      d;
+  	}
+  }
+  
    rule process_fs_checkin{
-    select when current_location
-    
+    select when update_to_location new_location
     pre{
-    	data = "data";
+    	lat = event:attr("lat");
+    	lng = event:attr("lng");
+    	dist = calculateDistance(122, 134);
     }
-    {
-     	notify("Hello", "world");
+    if( dist <= 5 ) {
+    	send_directive("location") with latitude = lat and longitude = lng;
     }
     fired{
-  	raise pds event location_nearby for b505218x10
-  		with key = "location"
-  		and value = "Current Location Processor";
+    	raise explicit event location_near with distance = dist;
+    }
+    else {
+    	raise explicit event location_far with distance = dist;
     }
   }
 }
