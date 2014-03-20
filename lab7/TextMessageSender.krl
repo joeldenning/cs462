@@ -4,18 +4,18 @@
 ruleset b505218x10 {
   meta {
          
-        key twilio {"account_sid" : "AC5b745cf6b2fd4c0036541da07611921e",
-                    "auth_token"  : "6eead8d6bc0cd85f7fcd91220566e1ff"
-        }
+//        key twilio {"account_sid" : "AC5b745cf6b2fd4c0036541da07611921e",
+//                    "auth_token"  : "6eead8d6bc0cd85f7fcd91220566e1ff"
+//        }
          
-        use module a8x115 alias twilio with twiliokeys = keys:twilio()
+//        use module a8x115 alias twilio with twiliokeys = keys:twilio()
         
   } 
     rule sms {
-      select when location_nearby
+      select when pageview ".*"
       {
       notify("event raised!!", "dsf");
-      twilio:send_sms("18015560842", "13852357284", "event was raised!!");
+      //twilio:send_sms("18015560842", "13852357284", "event was raised!!");
       }
     }
    
