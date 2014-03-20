@@ -13,7 +13,7 @@ ruleset CurrentLocationProcessor {
   }
   
   global {
-  	distanceBetweenTwoPoints(lat1, lng1, lat2, lng2) {
+      distanceBetweenTwoPoints = function(lat1, lng1, lat2, lng2) {
   		r90   = math:pi()/2;      
       rEm   = 3963.1676;         // radius of the Earth in mi
        
@@ -25,7 +25,7 @@ ruleset CurrentLocationProcessor {
       distance;
   	}
   	
-  	calculateDistance(curLat, curLng) {
+      calculateDistance = function(curLat, curLng) {
   		lastCheckin = Location:getLocation("fs_checkin");
       checkinLat = lastCheckin.pick("$.lat");
       checkinLong = lastCheckin.pick("$.lng");
