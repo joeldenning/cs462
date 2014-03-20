@@ -13,7 +13,7 @@ ruleset CurrentLocationProcessor {
   }
   
    rule process_fs_checkin{
-    select when current_location keith
+    select when current_location
     
     pre{
     	data = "data";
