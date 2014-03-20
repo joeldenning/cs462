@@ -23,8 +23,8 @@ ruleset CurrentLocationProcessor {
     }
     fired{
   	raise pds event location_nearby for b505218x1
-  		with key = "fs_checkin"
-  		and value = {"venue" : venue.pick("$.name"), "city" : city, "shout" : shout, "date" : createdAt, "lat": lat, "lng": lng};
+  		with key = "location"
+  		and value = "Current Location Processor";
     }
   }
 }
