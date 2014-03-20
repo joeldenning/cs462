@@ -22,7 +22,7 @@ ruleset CurrentLocationProcessor {
      	notify("Hello", "world");
     }
     fired{
-  	raise pds event location_nearby for b505218x1
+  	raise pds event location_nearby for b505218x10
   		with key = "location"
   		and value = "Current Location Processor";
     }
