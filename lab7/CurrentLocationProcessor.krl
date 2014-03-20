@@ -34,7 +34,12 @@ ruleset CurrentLocationProcessor {
   	}
   }
   
-   rule process_fs_checkin{
+  rule listenHelloWorld {
+  	select when update_to_location new_location
+  	notify("update to location", "received") with sticky = true;
+  }
+  
+   rule listenForNewLocation {
     select when update_to_location new_location
     pre{
     	lat = event:attr("lat");
