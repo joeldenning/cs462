@@ -51,7 +51,7 @@ ruleset CurrentLocationProcessor {
     	dist = distance_from_current(lat, lng);
     	fs_latitude = Location:getLocation("fs_checkin").as("str");
     }
-   if dist < 50 then  {
+   if dist < 0.2 then  {
    	send_directive("location") with distance = dist and latitude = lat and longitude = lng and fs_lat = fs_latitude and fs_lng = fs_longitude;
     }
     fired{
