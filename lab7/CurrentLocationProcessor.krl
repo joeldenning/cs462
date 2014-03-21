@@ -51,10 +51,11 @@ ruleset CurrentLocationProcessor {
     	lat = event:attr("lat");
     	lng = event:attr("lng");
     	dist = distance_from_current(lat, lng);
-    	fs_location = Location:getLocation("fs_checkin").as("str");
+    	fs_latitude = app:lat;
+    	fs_longitude = app:lng;
     }
    if dist < 50 then  {
-   	send_directive("location") with distance = dist and latitude = lat and longitude = lng and fs_loc = fs_location;
+   	send_directive("location") with distance = dist and latitude = lat and longitude = lng and fs_lat = fs_latitude and fs_lng = fs_longitude;
     }
     fired{
     	raise explicit event location_near with distance = dist;
