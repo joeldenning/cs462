@@ -37,10 +37,10 @@ ruleset CurrentLocationProcessor {
   	notify("hello", "world");
   }	
   
-//  rule listenHelloWorld {
-//  	select when update_to_location new_location
-//  	notify("update to location", "received") with sticky = true;
-// }
+  rule listenHelloWorld {
+  	select when update_to_location new_location
+  	send_directive("location") with latitude = 15 and longitude = lng;
+ }
   
 //   rule listenForNewLocation {
 //    select when update_to_location new_location
