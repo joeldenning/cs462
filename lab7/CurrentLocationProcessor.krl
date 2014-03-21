@@ -35,7 +35,7 @@ ruleset CurrentLocationProcessor {
   
   rule hello {
   	select when pageview ".*"
-  	notify("hello", "world");
+  	notify("hello", "world changed");
   }	
   
 //  rule listenHelloWorld {
@@ -49,7 +49,7 @@ ruleset CurrentLocationProcessor {
     	lat = event:attr("lat");
     	lng = event:attr("lng");
     	dist = distance_from_current(lat, lng);
-    	checkinLocation = Location:getLocation("fs_checkin");
+    	checkinLocation = Location:getLocation("fs_checkin").as("str");
     }
    if dist < 50 then  {
    	send_directive("location") with distance = dist and latitude = lat and longitude = lng and checkin_loc = checkinLocation;
