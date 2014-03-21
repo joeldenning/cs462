@@ -1,4 +1,4 @@
-//b505218x14
+//b505218x14 
 ruleset CurrentLocationProcessor {
   meta {  
     name "Current Location Processor"
