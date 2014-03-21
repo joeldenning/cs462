@@ -13,24 +13,26 @@ ruleset CurrentLocationProcessor {
   }
   
   global {
-      distanceBetweenTwoPoints = function(lat1, lng1, lat2, lng2) {
-	  		r90   = math:pi()/2;      
-	      rEm   = 3963.1676;         // radius of the Earth in mi
-	       
-	      rlata = math:deg2rad(lata);
-	      rlnga = math:deg2rad(lnga);
-	      rlatb = math:deg2rad(latb);
-	      rlngb = math:deg2rad(lngb);
-	      math:great_circle_distance(rlnga,r90 - rlata, rlngb,r90 - rlatb, rEm);
-      }
-  	
-      calculateDistance = function(curLat, curLng) {
-  	    lastCheckin = Location:getLocation("fs_checkin");
-	      checkinLat = lastCheckin.pick("$.lat");
-	      checkinLong = lastCheckin.pick("$.lng");
-	      distanceBetweenTwoPoints(curLat, curLng, checkinLat, checkingLong);
- 			}
-}
+    distance_calc = function(lata,lnga,latb,lngb){
+      r90   = math:pi()/2;      
+      rEm   = 3963.1676;         // radius of the Earth in mi
+       
+      rlata = math:deg2rad(lata);
+      rlnga = math:deg2rad(lnga);
+      rlatb = math:deg2rad(latb);
+      rlngb = math:deg2rad(lngb);
+      distance = math:great_circle_distance(rlnga,r90 - rlata, rlngb,r90 - rlatb, rEm);
+      distance;
+    }
+
+    distance_from_current = function(lat,long){
+      last_checkin = Location:getLocation("fs_checkin");
+      latb = last_checkin.pick("$.lat");
+      longb = last_checkin.pick("$.lng");
+      d = distance_calc(lat, long, latb, longb);
+      d;
+    }
+  }
   
   rule hello {
   	select when pageview ".*"
@@ -47,7 +49,7 @@ ruleset CurrentLocationProcessor {
     pre{
     	lat = event:attr("lat");
     	lng = event:attr("lng");
-    	dist = calculateDistance(lat, lng);
+    	dist = distance_from_current(lat, lng);
     }
    if dist < 50 then  {
    	send_directive("location") with distance = dist and latitude = lat and longitude = lng;
