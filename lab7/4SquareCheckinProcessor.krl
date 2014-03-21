@@ -40,7 +40,7 @@ ruleset FourSquareCheckin {
 	set ent:lat lat;
 	set ent:lng lng;
 
-	raise pds event new_location_data for b505218x1
+	raise pds event new_location_data for b505218x13
 		with key = "fs_checkin"
 		and value = {"venue" : venue.pick("$.name"), "city" : city, "shout" : shout, "date" : createdAt, "lat": lat, "lng": lng};
     }
