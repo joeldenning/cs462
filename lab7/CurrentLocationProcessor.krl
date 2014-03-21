@@ -59,4 +59,4 @@ ruleset CurrentLocationProcessor {
 //    	raise explicit event location_far with distance = dist;
 //    }
 //  }
-//}
+}
