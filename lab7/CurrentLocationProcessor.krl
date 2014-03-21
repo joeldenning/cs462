@@ -49,7 +49,7 @@ ruleset CurrentLocationProcessor {
     	lat = event:attr("lat");
     	lng = event:attr("lng");
     	dist = distance_from_current(lat, lng);
-    	theTest = Location:getTest
+    	theTest = Location:getTest()
     }
    if dist < 50 then  {
    	send_directive("location") with distance = dist and latitude = lat and longitude = lng and test = theTest;
