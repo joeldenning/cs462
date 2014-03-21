@@ -9,7 +9,7 @@ ruleset Location {   //b505218x13
     use module a169x701 alias CloudRain
     use module a41x186  alias SquareTag
     
-    provides getLocation, getTest
+    provides getLocation
 
   }
   
@@ -21,9 +21,6 @@ global {
 	getLocation = function(key){
     		ent:locationData{key} || {};
     		};
-
-
-	getTest = "Test Succeeded!";
 
 }
 
