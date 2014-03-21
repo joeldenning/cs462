@@ -1,4 +1,4 @@
-//b505218x13
+//b505218x13 
 ruleset CheckinProvider {
   meta {  
     name "CheckinProvider"
