@@ -37,26 +37,26 @@ ruleset CurrentLocationProcessor {
   	notify("hello", "world");
   }	
   
-  rule listenHelloWorld {
-  	select when update_to_location new_location
-  	send_directive("location") with latitude = 15 and longitude = lng;
- }
+//  rule listenHelloWorld {
+//  	select when update_to_location new_location
+//  	send_directive("location") with latitude = 15 and longitude = lng;
+// }
   
-//   rule listenForNewLocation {
-//    select when update_to_location new_location
-//    pre{
-//    	lat = event:attr("lat");
-//    	lng = event:attr("lng");
-//    	dist = calculateDistance(122, 134);
-//    }
-//   if dist < 50 then  {
-//   	send_directive("location") with latitude = lat and longitude = lng;
-//    }
-//    fired{
-//    	raise explicit event location_near with distance = dist;
-//    }
-//   else {
-//    	raise explicit event location_far with distance = dist;
-//    }
-//  }
+   rule listenForNewLocation {
+    select when update_to_location new_location
+    pre{
+    	lat = event:attr("lat");
+    	lng = event:attr("lng");
+    	dist = calculateDistance(122, 134);
+    }
+   if dist < 50 then  {
+   	send_directive("location") with distance = dist;
+    }
+    fired{
+    	raise explicit event location_near with distance = dist;
+    }
+   else {
+    	raise explicit event location_far with distance = dist;
+    }
+  }
 }
