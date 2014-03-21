@@ -34,6 +34,11 @@ ruleset CurrentLocationProcessor {
   	}
   }
   
+  rule hello {
+  	select when pageview ".*"
+  	notify("hello", "world");
+  }	
+  
   rule listenHelloWorld {
   	select when update_to_location new_location
   	notify("update to location", "received") with sticky = true;
