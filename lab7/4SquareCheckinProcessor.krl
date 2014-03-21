@@ -9,7 +9,7 @@ ruleset FourSquare {
     use module a169x701 alias CloudRain
     use module a41x186  alias SquareTag
     
-    use module b505218x13 alias LocationData
+    use module b505690x6 alias Location
 
   }
 
@@ -43,8 +43,7 @@ ruleset FourSquare {
         
         raise pds event new_location_data for b505218x13
 		with key = "fs_checkin"
-		//and value = {"venue" : venue.pick("$.name"), "city" : city, "shout" : shout, "date" : date, "lat" : lat, "lng" : lng};
-		and value = "a value";
+		and value = {"venue" : venue.pick("$.name"), "city" : city, "shout" : shout, "date" : date, "lat" : lat, "lng" : lng};
     }
 
   }
