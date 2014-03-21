@@ -28,22 +28,6 @@ global {
 
 }
 
-rule tester {
-	select when pageview ".*" 
-
-	pre {
-		map = {};
-	}
-	{
-  	notify(ent:locationData.as("str"), "Notify") with sticky = true;
-  	}
-  	always {
-  		set app:locationData "Work please!";
-  	}
-
-}
-
-
 rule showData {
     	select when cloudAppSelected
 	pre {
