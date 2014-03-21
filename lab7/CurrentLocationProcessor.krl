@@ -51,7 +51,7 @@ ruleset CurrentLocationProcessor {
     	lng = event:attr("lng");
     	dist = calculateDistance(122, 134);
     }
-    if dist < 5 then  {
+    if dist < 50 then  {
     	send_directive("location") with latitude = lat and longitude = lng;
     }
     fired{
