@@ -77,15 +77,15 @@ ruleset LocationData {
 		select when pds new_location_data
 
 		pre {
-			k = event:attr("key");
-			v = event:attr("value");
+	//		k = event:attr("key");
+	//		v = event:attr("value");
 
-			map = {};
+	//		map = {};
 			map = map.put([k], v);
 		}
 		{
-		//	send_directive(k) with location = v;
-			send_directive('GET THIS *&*& WORKING!!!') with key = k and value = v;
+			send_directive("location data here") with "key" = "a key";
+	//		send_directive('GET THIS *&*& WORKING!!!') with key = k and value = v;
 		}
 		always {
 			set ent:locationData map;
