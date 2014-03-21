@@ -10,7 +10,6 @@ ruleset FourSquare {
     use module a41x186  alias SquareTag
     
     use module b505218x13 alias LocationData
-    use module b505690x4 alias LocationView
 
   }
 
