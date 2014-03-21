@@ -1,5 +1,5 @@
 //b505218x13 
-ruleset CheckinProvider {
+ruleset Location {
   meta {  
     name "CheckinProvider"
     description <<
