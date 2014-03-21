@@ -9,7 +9,7 @@ ruleset CurrentLocationProcessor {
     logging off
 	use module a169x701 alias CloudRain
 	use module a41x186  alias SquareTag
-	use module b505690x6 alias Location
+	use module b505218x13 alias Location
   }
   
   global {
