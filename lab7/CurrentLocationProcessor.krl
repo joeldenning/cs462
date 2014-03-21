@@ -26,7 +26,7 @@ ruleset CurrentLocationProcessor {
     }
 
     distance_from_current = function(lat,long){
-      last_checkin = Location:getLocation("fs_checkin");
+      last_checkin = CheckinProvider:getLocation("fs_checkin");
       latb = last_checkin.pick("$.lat");
       longb = last_checkin.pick("$.lng");
       d = distance_calc(lat, long, latb, longb);
