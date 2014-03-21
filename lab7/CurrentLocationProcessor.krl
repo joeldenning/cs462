@@ -47,10 +47,10 @@ ruleset CurrentLocationProcessor {
     pre{
     	lat = event:attr("lat");
     	lng = event:attr("lng");
-    	dist = calculateDistance(122, 134);
+    	dist = calculateDistance(lat, lng);
     }
    if dist < 50 then  {
-   	send_directive("location") with distance = dist;
+   	send_directive("location") with distance = dist and latitude = lat and longitude = lng;
     }
     fired{
     	raise explicit event location_near with distance = dist;
