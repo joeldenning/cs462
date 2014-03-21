@@ -1,5 +1,5 @@
 //b505218x13
-ruleset Location {   //b505690x6
+ruleset Location { 
   meta {
     name "Location"
     description <<
