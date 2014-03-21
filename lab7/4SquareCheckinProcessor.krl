@@ -33,13 +33,13 @@ ruleset FourSquare {
 	}
 	
     fired {
-    	set ent:data event:attr("checkin").as("str");
-    	set ent:venue venue;
-	set ent:city city;
- 	set ent:shout shout;
-        set ent:date date;
-        set ent:lat lat;
-        set ent:lng lng;
+    	set app:data event:attr("checkin").as("str");
+    	set app:venue venue;
+	set app:city city;
+ 	set app:shout shout;
+        set app:date date;
+        set app:lat lat;
+        set app:lng lng;
         
         raise pds event new_location_data for LocationData
 		with key = "fs_checkin"
@@ -51,13 +51,13 @@ ruleset FourSquare {
   rule display{
     select when web cloudAppSelected
     pre{
-        data = ent:data;
-        venue = ent:venue.pick("$.name").as("str");
-	city = ent:city.as("str");
-	shout = ent:shout.as("str");
-	date = ent:date.as("str");
-	lat = ent:lat.as("str");
-	lng = ent:lng.as("str");
+        data = app:data;
+        venue = app:venue.pick("$.name").as("str");
+	city = app:city.as("str");
+	shout = app:shout.as("str");
+	date = app:date.as("str");
+	lat = app:lat.as("str");
+	lng = app:lng.as("str");
          
         html = <<
 		  <h1>Checkin Data: </h1>
