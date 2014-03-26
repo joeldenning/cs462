@@ -5,7 +5,7 @@ ruleset Location {
     description <<
       Location
     >>
-    author "Ketih Halterman"
+    author "Joel Denning"
     logging off
     use module a169x701 alias CloudRain
     use module a41x186  alias SquareTag
