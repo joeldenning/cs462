@@ -34,7 +34,7 @@ ruleset catch_location {
     				>>;
     }
     {
-      CloudRain:createLoadPanel("Foursquare Checkin info",{}, html_output);
+      CloudRain:createLoadPanel("Foursquare Checkin info",{}, html);
     }
   }
 }
