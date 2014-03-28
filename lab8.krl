@@ -22,6 +22,7 @@ ruleset catch_location {
   rule location_display {
     select when web cloudAppSelected
     pre {
+        checkin = ent:fs_checkin;
     		venue = checkin.pick("$.venue").encode().as("str");
     		city = checkin.pick("$.city").encode(); 
     		shout = checkin.pick("$.shout").encode();
