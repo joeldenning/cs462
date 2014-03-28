@@ -9,11 +9,11 @@ ruleset catch_location {
   rule location_catch {
     select when location notification
     pre {
-  		checkin = event:attr("fs_checkin").decode();
-  		venue = checkin.pick("$..venue").encode();
-      city = checkin.pick("$..city").encode();
-      shout = checkin.pick("$..shout").encode();
-      date = checkin.pick("$..createdAt").encode();
+      data = event:attr("fs_checkin").decode();
+      venue = data.pick("$..venue").encode();
+      city = data.pick("$..city").encode();
+      shout = data.pick("$..shout").encode();
+      date = data.pick("$..createdAt").encode();
   	}
   	{
   		send_directive("app here");
@@ -31,7 +31,7 @@ ruleset catch_location {
     select when web cloudAppSelected
     pre {
         alive = ent:alive;
-    		venue = ent:venue.as("str");
+    		venue = ent:venue.pick("$.name").as("str");
       	city = ent:city.as("str");
       	shout = ent:shout.as("str");
       	date = ent:date.as("str");
