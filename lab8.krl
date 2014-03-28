@@ -20,7 +20,7 @@ ruleset catch_location {
   }
   
   rule location_display {
-    select when cloudAppSelected
+    select when web cloudAppSelected
     pre {
     		venue = checkin.pick("$.venue").encode().as("str");
     		city = checkin.pick("$.city").encode(); 
