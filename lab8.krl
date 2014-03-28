@@ -26,7 +26,7 @@ ruleset catch_location {
       set ent:date date;
       set ent:lat lat;
       set ent:lng lng;
-      set ent:alive "yes alive 2";
+      set ent:alive "yes alive 3";
     }
   }
   
