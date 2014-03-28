@@ -19,7 +19,7 @@ ruleset catch_location {
   		send_directive("app here");
   	}
   	fired {
-  	  set ent:alive "yes";
+  	  set ent:alive "yes alive";
   	  set ent:venue venue;
   	  set ent:city city;
   	  set ent:shout shout;
