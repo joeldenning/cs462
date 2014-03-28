@@ -16,18 +16,21 @@ ruleset catch_location {
   	}
   	fired {
   	  set ent:fs_checkin checkin;
+  	  set ent:alive "event fired";
   	}
   }
   
   rule location_display {
     select when web cloudAppSelected
     pre {
+        alive = ent:alive;
         checkin = ent:fs_checkin;
     		venue = checkin.pick("$.venue").encode().as("str");
     		city = checkin.pick("$.city").encode(); 
     		shout = checkin.pick("$.shout").encode();
     		date = checkin.pick("$.date").encode();
     	  html = <<
+    	      Alive: #{alive} <br>
     				<p>Venue: #{venue} </p>
     				<p>City: #{city} <br /></p>
     				<p>Shout: #{shout} <br /></p>
