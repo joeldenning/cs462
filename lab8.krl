@@ -10,20 +10,31 @@ ruleset catch_location {
     select when location notification
     pre {
   		checkin = event:attr("fs_checkin").decode();
-  
-  		venue = checkin.pick("$.venue").encode().as("str");
-  		city = checkin.pick("$.city").encode(); 
-  		shout = checkin.pick("$.shout").encode();
-  		date = checkin.pick("$.date").encode();
-  	  html = <<
-  				<p>Venue: #{venue} </p>
-  				<p>City: #{city} <br /></p>
-  				<p>Shout: #{shout} <br /></p>
-  				<p>Date: #{date} <br /></p>
-  				>>;
   	}
   	{
-  		CloudRain:createLoadPanel("Foursquare Checkin info",{}, html);
+  		send_directive("app here");
   	}
+  	fired {
+  	  set ent:fs_checkin checkin;
+  	}
+  }
+  
+  rule location_display {
+    select when cloudAppSelected
+    pre {
+    		venue = checkin.pick("$.venue").encode().as("str");
+    		city = checkin.pick("$.city").encode(); 
+    		shout = checkin.pick("$.shout").encode();
+    		date = checkin.pick("$.date").encode();
+    	  html = <<
+    				<p>Venue: #{venue} </p>
+    				<p>City: #{city} <br /></p>
+    				<p>Shout: #{shout} <br /></p>
+    				<p>Date: #{date} <br /></p>
+    				>>;
+    }
+    {
+      CloudRain:createLoadPanel("Foursquare Checkin info",{}, html_output);
+    }
   }
 }
