@@ -16,13 +16,9 @@ ruleset FourSquare {
   global {
   	subscription_map =
   	[
-  		{
-  			"cid": "96F6775C-B635-11E3-95F6-83B1AD931101"
-  		},
-  		{
-  			"cid": "C80146BA-B635-11E3-A209-2FC7E71C24E1"
-  		}
-  	]
+  		{"cid": "96F6775C-B635-11E3-95F6-83B1AD931101"},
+  		{"cid": "C80146BA-B635-11E3-A209-2FC7E71C24E1"}
+  	];
   }
   
   rule dispatcher {
