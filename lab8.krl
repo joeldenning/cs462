@@ -25,10 +25,10 @@ ruleset catch_location {
     pre {
         alive = ent:alive;
         checkin = ent:fs_checkin;
-    		venue = checkin.pick("$.venue").encode().as("str");
-    		city = checkin.pick("$.city").encode(); 
-    		shout = checkin.pick("$.shout").encode();
-    		date = checkin.pick("$.date").encode();
+    		venue = data.pick("$..venue");
+      	city = data.pick("$..city");
+      	shout = data.pick("$..shout");
+      	date = data.pick("$..createdAt");
     	  html = <<
     	      Alive: #{alive} <br>
     				<p>Venue: #{venue} </p>
