@@ -34,7 +34,7 @@ ruleset catch_location {
   rule display{
     select when web cloudAppSelected
     pre{
-      data = ent:data;
+      data = ent:data.as("str");
       venue = ent:venue.pick("$.name").as("str");
       city = ent:city.as("str");
       shout = ent:shout.as("str");
