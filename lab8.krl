@@ -26,7 +26,7 @@ ruleset catch_location {
       set ent:date date;
       set ent:lat lat;
       set ent:lng lng;
-      set ent:testing "CAUGHT THE EVENT";
+      set ent:alive "yes alive 2";
     }
   }
   
@@ -41,7 +41,7 @@ ruleset catch_location {
       date = ent:date.as("str");
       lat = ent:lat.as("str");
       lng = ent:lng.as("str");
-      testing = ent:testing;
+      alive = ent:alive;
       
       html = <<
       <h1>Checkin Data Lab 8: </h1>
@@ -51,7 +51,7 @@ ruleset catch_location {
       <b>On: </b> #{date}<br/>
       <b>latitude: </b> #{lat}<br/>
       <b>longitude: </b> #{lng}<br/>
-      <br> #{testing}
+      <br> #{alive}
       <br>
       <b>Data: </b> #{data} <br/>
       <br/>
