@@ -15,9 +15,6 @@ ruleset catch_location {
       shout = data.pick("$..shout").encode();
       date = data.pick("$..createdAt").encode();
   	}
-  	{
-  		send_directive("app here");
-  	}
   	fired {
   	  set ent:alive "yes alive";
   	  set ent:venue venue;
