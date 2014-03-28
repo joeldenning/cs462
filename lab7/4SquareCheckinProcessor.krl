@@ -24,6 +24,12 @@ ruleset FourSquare {
   		}
   	]
   }
+  
+  rule dispatcher {
+  	select when foursquare checkin
+  	foreach subscription_map setting (cid) 
+          event:send(cid,"location","notification") with attrs = {"fs_checkin" : event:attr("checkin").decode()};
+  }
 
   rule process_fs_checkin{
     select when foursquare checkin
