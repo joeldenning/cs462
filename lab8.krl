@@ -14,34 +14,49 @@ ruleset catch_location {
       city = data.pick("$..city").encode();
       shout = data.pick("$..shout").encode();
       date = data.pick("$..createdAt").encode();
-  	}
-  	fired {
-  	  set ent:alive "yes alive";
-  	  set ent:venue venue;
-  	  set ent:city city;
-  	  set ent:shout shout;
-  	  set ent:date date;
-  	}
+      location = venue.pick("$..location").encode();
+      lat = location.pick("$..lat").encode();
+      lng = location.pick("$..lng").encode();
+    } 
+    fired {
+      set ent:data data;
+      set ent:venue venue;
+      set ent:city city;
+      set ent:shout shout;
+      set ent:date date;
+      set ent:lat lat;
+      set ent:lng lng;
+      set ent:testing "CAUGHT THE EVENT";
+    }
   }
   
-  rule location_display {
+  
+  rule display{
     select when web cloudAppSelected
-    pre {
-        alive = ent:alive;
-    		venue = ent:venue.pick("$.name").as("str");
-      	city = ent:city.as("str");
-      	shout = ent:shout.as("str");
-      	date = ent:date.as("str");
-    	  html = <<
-    	      Alive: #{alive} <br>
-    				<p>Venue: #{venue} </p>
-    				<p>City: #{city} <br /></p>
-    				<p>Shout: #{shout} <br /></p>
-    				<p>Date: #{date} <br /></p>
-    				>>;
+    pre{
+      data = ent:data;
+      venue = ent:venue.pick("$.name").as("str");
+      city = ent:city.as("str");
+      shout = ent:shout.as("str");
+      date = ent:date.as("str");
+      lat = ent:lat.as("str");
+      lng = ent:lng.as("str");
+      testing = ent:testing;
+      
+      html = <<
+      <h1>Checkin Data Lab 8: </h1>
+      <b>I Was At: </b> #{venue}<br/>
+      <b>In: </b> #{city}<br/>
+      <b>Shouting: </b> #{shout}<br/>
+      <b>On: </b> #{date}<br/>
+      <b>latitude: </b> #{lat}<br/>
+      <b>longitude: </b> #{lng}<br/>
+      <br> #{testing}
+      <br>
+      <b>Data: </b> #{data} <br/>
+      <br/>
+      >>;
     }
-    {
-      CloudRain:createLoadPanel("Foursquare Checkin info",{}, html);
-    }
+      CloudRain:createLoadPanel("LAST CHECKIN", { },  html);
   }
 }
