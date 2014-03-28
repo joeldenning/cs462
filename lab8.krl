@@ -19,7 +19,7 @@ ruleset catch_location {
   		send_directive("app here");
   	}
   	fired {
-  	  set ent:alive "event fired";
+  	  set ent:alive "yes";
   	  set ent:venue venue;
   	  set ent:city city;
   	  set ent:shout shout;
@@ -31,10 +31,10 @@ ruleset catch_location {
     select when web cloudAppSelected
     pre {
         alive = ent:alive;
-    		venue = ent:venue;
-      	city = ent:city;
-      	shout = ent:shout;
-      	date = ent:date;
+    		venue = ent:venue.as("str");
+      	city = ent:city.as("str");
+      	shout = ent:shout.as("str");
+      	date = ent:date.as("str");
     	  html = <<
     	      Alive: #{alive} <br>
     				<p>Venue: #{venue} </p>
